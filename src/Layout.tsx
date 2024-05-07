@@ -1,13 +1,17 @@
 import { Outlet } from "react-router-dom"
-import Footer from "./components/Footer"
+import Footer from "./components/Footer.tsx"
+import TopBanner from "./components/TopBanner.tsx"
+import Header from "./components/Header.tsx"
+
 
 const Layout = () => {
   return (
-    <>
-    {/* header */}
+    <main className="">
+    <TopBanner/>
+    <Header/>
     <Outlet/>
     <Footer/>
-    </>
+    </main>
   )
 }
 
