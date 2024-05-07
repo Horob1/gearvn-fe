@@ -2,7 +2,38 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
+h1 {
+  @apply text-3xl font-bold;
+}
+
+h2 {
+  @apply text-2xl font-bold;
+}
+
+h3 {
+  @apply text-xl font-bold;
+}
+
+h4 {
+  @apply text-lg font-bold;
+}
+
+h5 {
+  @apply text-base font-bold;
+}
+
+h6 {
+  @apply text-sm font-bold leading-6;
+}
+
+p {
+  @apply text-sm font-medium leading-6;
+}
+
+span { 
+  @apply text-sm font-medium leading-6;
+}
+/* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -69,4 +100,4 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
-}
+} */
