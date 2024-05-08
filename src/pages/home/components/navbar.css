@@ -1,0 +1,13 @@
+.triangle:hover::after {
+content: '';
+ position: absolute;
+ transform: translateX(100%);
+ right: 0%;
+ top: 0%;
+ width: 0;
+ height: 0;
+ border-top: 18px solid transparent;
+ border-bottom: 18px solid transparent;
+ border-left: 36px solid #EF4444;
+ clear: both;
+}

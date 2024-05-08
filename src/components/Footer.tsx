@@ -22,7 +22,7 @@ import logo from '../assets/logo.png'
 
 const Footer = () => {
   return (
-    <div>
+    <div className='bg-white'>
       <div className=" sticky bottom-0 m-auto xl:max-w-[1220px] lg:max-w-[1000px] md:max-w-[100%] p-4">
         <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-12 gap-4 py-2 pb-4 border-b-2">
           <div className="md:col-span-1 lg:col-span-2">

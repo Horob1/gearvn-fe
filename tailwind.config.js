@@ -3,6 +3,7 @@ import daisyui from "daisyui"
 
 
 export default {
+  darkMode: 'selector',
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
@@ -61,7 +62,22 @@ export default {
       '5xl': '3rem',
       '6xl': '4rem',
     },
-    extend: {},
+    extend: {
+      keyframes: {
+        wiggle: {
+          '0%, 100%': { transform: 'rotate(-3deg)' },
+          '50%': { transform: 'rotate(3deg)' },
+        },
+        slide: {
+          '0': { transform: 'translateX(0%)'},
+          '100%': { transform: 'translateX(-0.6rem)'},
+        }
+      },
+      animation: {
+        wiggle: 'wiggle 1s ease-in-out infinite',
+        slide:'slide 0.3s forwards',
+      }
+    },
   },
   variants: {},
   plugins: [daisyui,],

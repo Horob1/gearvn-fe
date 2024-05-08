@@ -37,6 +37,14 @@ p {
 span { 
   @apply text-sm font-medium leading-6;
 }
+
+h1, h2, h3, h4, h5, h6, span, p {
+  color: #000000;
+}
+
+input {
+  background: #ffffff;
+}
 /* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;

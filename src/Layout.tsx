@@ -6,7 +6,7 @@ import Header from "./components/Header.tsx"
 
 const Layout = () => {
   return (
-    <main className="">
+    <main className="bg-[#ECECEC]">
     <TopBanner/>
     <Header/>
     <Outlet/>

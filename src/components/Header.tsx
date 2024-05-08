@@ -10,7 +10,7 @@ import { IoPersonOutline } from "react-icons/io5";
 import RearBanner from './RearBanner';
 const Header = () => {
   return (
-    <div className="sticky top-0  bg-[#E30019]">
+    <div className="sticky top-0  bg-[#E30019] z-50">
       <div className="m-auto xl:max-w-[1220px] lg:max-w-[1000px] md:max-w-[100%] p-4 flex justify-between items-center">
           <Link to={'/'}><img className='h-[32px]' src={logo} alt="logo" loading='lazy' /></Link>
           <button className='bg-[#BE1529] hover:bg-red-900  py-1.5 px-2 rounded-md flex items-center'><IoMenu className='text-white text-3xl'/><span className='text-white pl-1.5 hidden xl:block'>Danh mục</span></button>
@@ -21,32 +21,32 @@ const Header = () => {
           <div className='flex cursor-pointer text-white items-center ml-2'>
             <PiHeadsetBold className='text-2xl mr-2' />
             <div className='hidden xl:block'>
-              <p className='leading-4'>Hotline</p>
-              <p className='leading-4'>1800.xyzt</p>
+              <p className='leading-4 text-white'>Hotline</p>
+              <p className='leading-4 text-white'>1800.xyzt</p>
             </div>
           </div>
           <div className='flex cursor-pointer text-white items-center ml-2'>
             <FaLocationDot  className='text-2xl mr-2' />
             <div className='hidden xl:block'>
-              <p className='leading-4'>Hệ thống</p>
-              <p className='leading-4'>Showroom</p>
+              <p className='leading-4 text-white'>Hệ thống</p>
+              <p className='leading-4 text-white'>Showroom</p>
             </div>
           </div>
           <div className='flex cursor-pointer text-white items-center ml-2'>
             <IoClipboard  className='text-2xl mr-2' />
             <div className='hidden xl:block'>
-              <p className='leading-4'>Tra cứu</p>
-              <p className='leading-4'>đơn hàng</p>
+              <p className='leading-4 text-white'>Tra cứu</p>
+              <p className='leading-4 text-white'>đơn hàng</p>
             </div>
           </div>
           
           <div className='flex cursor-pointer text-white items-center ml-2'>
             
             <div className="indicator">
-              <span className="indicator-item bg-yellow-500 indicator-start badge badge-secondary">3</span> 
+              <span className="indicator-item text-white bg-yellow-500 indicator-start badge badge-secondary">3</span> 
               <LuShoppingCart  className='text-2xl mr-2' />
             </div>
-            <p className='leading-4 hidden xl:block'>Giỏ hàng</p>
+            <p className='leading-4 text-white hidden xl:block'>Giỏ hàng</p>
           </div>
           <button className='bg-[#BE1529] hover:bg-red-900  py-1.5 px-2 rounded-md flex items-center'><IoPersonOutline className='text-white text-2xl'/><span className='text-white pl-1.5 hidden xl:block'>Đăng nhập</span></button>
       </div>
