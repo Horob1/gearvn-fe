@@ -71,11 +71,20 @@ export default {
         slide: {
           '0': { transform: 'translateX(0%)'},
           '100%': { transform: 'translateX(-0.6rem)'},
+        },
+        blinker: {
+        '0%': {
+            opacity: 0,
+          },
+        '100%': {
+            opacity: 1,
+        }
         }
       },
       animation: {
         wiggle: 'wiggle 1s ease-in-out infinite',
         slide:'slide 0.3s forwards',
+        blinker: 'blinker 1s linear'
       }
     },
   },
