@@ -64,6 +64,10 @@ export default {
     },
     extend: {
       keyframes: {
+        run: {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(300%)' },
+        },
         wiggle: {
           '0%, 100%': { transform: 'rotate(-3deg)' },
           '50%': { transform: 'rotate(3deg)' },
@@ -84,7 +88,8 @@ export default {
       animation: {
         wiggle: 'wiggle 1s ease-in-out infinite',
         slide:'slide 0.3s forwards',
-        blinker: 'blinker 1s linear'
+        blinker: 'blinker 1s linear',
+        running: 'run 3s forwards'
       }
     },
   },

@@ -28,19 +28,18 @@ const Footer = () => {
           <div className="md:col-span-1 lg:col-span-2">
             <ul>
               <h6 className="pb-3">VỀ GEARVN</h6>
-              <div><li><p className="pb-2">Tuyển dụng</p></li></div>
+              <li><p className="pb-2">Giới thiệu</p></li>
+              <li><p className="pb-2">Tuyển dụng</p></li>
             </ul>
             
           </div>
           <div className="md:col-span-1 lg:col-span-2">
             <ul>
               <h6 className="pb-3">CHÍNH SÁCH</h6>
-              <div>
                 <li><p className="pb-2">Chính sách bảo hành</p></li>
                 <li><p className="pb-2">Chính sách thanh toán</p></li>
                 <li><p className="pb-2">Chính sách giao hàng</p></li>
                 <li><p className="pb-2">Chính sách bảo mật</p></li>
-              </div>
             </ul>
           </div>
           <div className="md:col-span-1 lg:col-span-2">
