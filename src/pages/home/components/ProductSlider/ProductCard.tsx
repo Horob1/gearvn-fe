@@ -11,23 +11,26 @@ import { BiSolidMemoryCard } from "react-icons/bi";
 // import { SlScreenDesktop } from "react-icons/sl";
 // import { FiTarget } from "react-icons/fi";
 import { FaStar } from "react-icons/fa";
+import { FaImage } from 'react-icons/fa6';
 
 const ProductCard = ({isLoading}: ProductCardProps) => {
   return (
     <div>
-      <div className="flex flex-col gap-4  w-full mt-6 border rounded-sm px-4 pb-2">
+      <div className="flex flex-col gap-4 h-full  w-full mt-6 border rounded-md px-4 pb-2">
         {isLoading ? 
         <>
-          <div className="skeleton h-[232px] w-full"></div>
+          <div className="skeleton h-[232px] w-full relative mt-4">
+            <FaImage className="absolute top-1/2 right-1/2 translate-x-1/2 -translate-y-1/2 text-3xl text-gray-500"/>
+          </div>
           <div className="skeleton h-4 w-28"></div>
           <div className="skeleton h-4 w-full"></div>
           <div className="skeleton h-4 w-full"></div>
           <div className="skeleton h-12 w-full"></div>
-          <div className="skeleton h-4 w-full "></div>
+          <div className="skeleton h-4 w-full mb-4"></div>
         </> : 
         <>
           <div className="h-[232px] w-full ">
-            <img src={image} alt="product" className='w-full h-full rounded-t-sm'/>
+            <img src={image} alt="product" className='w-full h-full rounded-t-md'/>
           </div>
           <h6 className='text-base text-wrap line-clamp-2'>Laptop ASUS Vivobook S 16 OLED S5606MA MX051W</h6>
           <div className='p-1.5 bg-[#ECECEC] rounded-md'>
