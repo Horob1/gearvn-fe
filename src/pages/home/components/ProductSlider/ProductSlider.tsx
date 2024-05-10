@@ -4,6 +4,7 @@ import { FreeMode, Navigation, Autoplay} from "swiper/modules"
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
 import 'swiper/css'
 import 'swiper/css/free-mode'
+import './card.css'
 // import 'swiper/css/navigation'
 const ProductSlider = () => {
 

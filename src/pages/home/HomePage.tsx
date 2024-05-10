@@ -1,9 +1,9 @@
+import { Helmet } from "react-helmet-async"
 import Ads from "./components/Ads.tsx"
 import { Carousel } from "./components/Carousel.tsx"
 import Catelog from "./components/Catelog.tsx"
 import { Navbar } from "./components/Navbar.tsx"
 import ProducList from "./components/ProducList.tsx"
-import {Helmet} from "react-helmet";
 
 const HomePage = () => {
   return (
@@ -19,7 +19,7 @@ const HomePage = () => {
         <div className="hidden md:block md:col-span-2 z-20">
           <Navbar/>
         </div>
-        <div className="col-span-12 md:col-span-10 z-10">
+        <div className="col-span-12 md:col-span-10 z-1">
           <Carousel></Carousel>
         </div>
         

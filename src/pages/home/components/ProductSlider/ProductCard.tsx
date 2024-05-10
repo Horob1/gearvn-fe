@@ -16,7 +16,7 @@ import { FaImage } from 'react-icons/fa6';
 const ProductCard = ({isLoading}: ProductCardProps) => {
   return (
     <div>
-      <div className="flex flex-col gap-4 h-full  w-full mt-6 border rounded-md px-4 pb-2">
+      <div className=" flex flex-col gap-4 h-full  w-full mt-6 border rounded-md px-4 pb-2">
         {isLoading ? 
         <>
           <div className="skeleton h-[232px] w-full relative mt-4">

@@ -64,6 +64,30 @@ export default {
     },
     extend: {
       keyframes: {
+        scale: {
+          '0%': {
+            transform: 'scale(0)'
+            },
+          '100%': {
+            transform: 'scale(1)',
+          }
+        },
+        tiny: {
+          '0%': {
+            transform: 'scale(1)',
+            },
+          '100%': {
+            transform: 'scale(0)'
+          }
+        },
+        border: {
+          '0%': {
+            borderColor: 'white',
+          },
+          '100%': {
+            borderColor: 'red',
+          }
+        },
         run: {
           '0%': { transform: 'translateX(0)' },
           '100%': { transform: 'translateX(300%)' },
@@ -89,7 +113,10 @@ export default {
         wiggle: 'wiggle 1s ease-in-out infinite',
         slide:'slide 0.3s forwards',
         blinker: 'blinker 1s linear',
-        running: 'run 3s forwards'
+        running: 'run 3s forwards',
+        scale:'scale 0.5s ease-in-out',
+        border: 'border 0.5s forwards',
+        tiny: 'tiny 0.5s ease-in-out',
       }
     },
   },

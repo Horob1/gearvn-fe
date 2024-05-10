@@ -36,20 +36,20 @@ const ImageSlider = ({imgs, isLoading}: ImageSliderProps) => {
       </div>
       :
       <div className="w-full relative md:h-96">
+        <img key={index} className="w-full h-full rounded-md animate-blinker" src={imgs[index]} alt="center-banner" />
         <button onClick={handleLeftButton}
-        className="absolute top-1/2 -translate-y-1/2 left-2 text-white cursor-pointer z-10"
+        className="absolute top-1/2 -translate-y-1/2 left-2 text-white cursor-pointer z-2"
         >
           <FaAngleLeft 
           className="text-5xl"
           />
         </button>
-        <img key={index} className="w-full h-full rounded-md animate-blinker" src={imgs[index]} alt="center-banner" />
         <button onClick={handleRightButton}
-        className="absolute top-1/2 -translate-y-1/2 right-2 text-white cursor-pointer z-10"
+        className="absolute top-1/2 -translate-y-1/2 right-2 text-white cursor-pointer z-2"
         >
           <FaAngleRight 
           className="text-5xl" 
-        />
+          />
         </button>
         <div className="hidden md:block absolute bottom-2 left-1/2 -translate-x-1/2">
           {[0,1,2,3,4,5].map(

@@ -8,9 +8,8 @@ export type ShowroomDetailProps = {
 }
 
 const ShowroomDetail = ({data} : ShowroomDetailProps) => {
-  console.log(data)
   return (
-    <div className="m-auto w-full xl:max-w-[1220px] lg:max-w-[1000px] md:max-w-[100%] px-8 py-12 grid grid-cols-1 md:grid-cols-12 gap-20">
+    <div className=" m-auto w-full xl:max-w-[1220px] lg:max-w-[1000px] md:max-w-[100%] px-8 py-12 grid grid-cols-1 md:grid-cols-12 gap-20">
       <div className="flex flex-col gap-4 md:col-span-5">
         <h5>SHOWROOM GEARVN</h5>
         <h1 className="text-[#003159]">{data.name.toUpperCase()}</h1>
@@ -23,7 +22,7 @@ const ShowroomDetail = ({data} : ShowroomDetailProps) => {
           border:"0"
         }} allowFullScreen={true} loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
       </div>
-      <div className="md:col-span-7 bg-red-50 border-4 border-[#E30019] rounded-lg relative" style={{  
+      <div className="hidden md:block md:col-span-7 bg-red-50 border-4 border-[#E30019] rounded-lg relative" style={{  
         backgroundImage: `url(${data.img})`,
         backgroundPosition: 'center',
         backgroundSize: 'cover',

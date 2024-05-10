@@ -1,4 +1,4 @@
-import { Helmet } from "react-helmet"
+
 import background from "./../../assets/showroom/background.png"
 import shiper from "./../../assets/showroom/shiper.png"
 import showroom from "./../../assets/showroom/showroom.png"
@@ -11,6 +11,7 @@ import HHT from "./../../assets/showroom/HHT.jpg"
 import TH from "./../../assets/showroom/TH.jpg"
 import KVC from "./../../assets/showroom/KVC.jpg"
 import ShowroomDetail from "./ShowroomDetail"
+import { Helmet } from "react-helmet-async"
 
 const showrooms = [{
   name: "Hoàng Hoa Thám",

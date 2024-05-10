@@ -1,6 +1,11 @@
-import laptop from './../../../assets/dummy/catelog/latop.webp'
-import pc from './../../../assets/dummy/catelog/pc.webp'
-import camera from './../../../assets/dummy/catelog/camera.png'
+import laptop from './../../../assets/catelog/latop.webp'
+import pc from './../../../assets/catelog/pc.webp'
+import camera from './../../../assets/catelog/camera.png'
+import monitor from './../../../assets/catelog/monitor.webp'
+import component from './../../../assets/catelog/component.webp'
+import mouse from './../../../assets/catelog/mouse.jpg'
+import keyboard from './../../../assets/catelog/keyboard.webp'
+import headphone from './../../../assets/catelog/headphone.webp'
 const Catelog = () => {
   return (
     <div className="w-full px-4 py-3 bg-white mt-3 rounded-md">
@@ -9,6 +14,11 @@ const Catelog = () => {
         <img src={pc} alt="" className='w-full aspect-square' />
         <img src={laptop} alt="" className='w-full aspect-square' />
         <img src={camera} alt="" className='w-full aspect-square' />
+        <img src={monitor} alt="" className='w-full aspect-square' />
+        <img src={mouse} alt="" className='w-full aspect-square' />
+        <img src={keyboard} alt="" className='w-full aspect-square' />
+        <img src={headphone} alt="" className='w-full aspect-square' />
+        <img src={component} alt="" className='w-full aspect-square' />
       </div>
     </div>
   )

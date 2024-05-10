@@ -19,36 +19,37 @@ import contact3 from '../assets/footer/link/youtube.webp'
 import bct from '../assets/footer/logo-bct.webp'
 
 import logo from '../assets/logo.png'
+import { Link } from 'react-router-dom'
 
 const Footer = () => {
   return (
-    <div className='bg-white'>
+    <div className='bg-white pb-10 md:pb-0'>
       <div className=" sticky bottom-0 m-auto xl:max-w-[1220px] lg:max-w-[1000px] md:max-w-[100%] p-4">
         <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-12 gap-4 py-2 pb-4 border-b-2">
           <div className="md:col-span-1 lg:col-span-2">
             <ul>
               <h6 className="pb-3">VỀ GEARVN</h6>
               <li><p className="pb-2">Giới thiệu</p></li>
-              <li><p className="pb-2">Tuyển dụng</p></li>
+              <a href="https://www.youtube.com/channel/UCOObyrR-kbuu2L94zgjm1Cg"><li><p className="pb-2">Tuyển dụng</p></li></a>
             </ul>
             
           </div>
           <div className="md:col-span-1 lg:col-span-2">
             <ul>
               <h6 className="pb-3">CHÍNH SÁCH</h6>
-                <li><p className="pb-2">Chính sách bảo hành</p></li>
-                <li><p className="pb-2">Chính sách thanh toán</p></li>
-                <li><p className="pb-2">Chính sách giao hàng</p></li>
-                <li><p className="pb-2">Chính sách bảo mật</p></li>
+                <a href="https://www.youtube.com/channel/UCOObyrR-kbuu2L94zgjm1Cg"><li><p className="pb-2">Chính sách bảo hành</p></li></a>
+                <a href="https://www.youtube.com/channel/UCOObyrR-kbuu2L94zgjm1Cg"><li><p className="pb-2">Chính sách thanh toán</p></li></a>
+                <a href="https://www.youtube.com/channel/UCOObyrR-kbuu2L94zgjm1Cg"><li><p className="pb-2">Chính sách giao hàng</p></li></a>
+                <a href="https://www.youtube.com/channel/UCOObyrR-kbuu2L94zgjm1Cg"><li><p className="pb-2">Chính sách bảo mật</p></li></a>
             </ul>
           </div>
           <div className="md:col-span-1 lg:col-span-2">
             <ul>
               <h6 className="pb-3">THÔNG TIN</h6>
               <div>
-                <li><p className="pb-2">Hệ thống của hàng</p></li>
-                <li><p className="pb-2">Hướng dẫn đặt mua</p></li>
-                <li><p className="pb-2">Tra cứu địa chỉ bảo hành</p></li>
+                <Link to={'/showroom'}><li><p className="pb-2">Hệ thống của hàng</p></li></Link>
+                <a href="https://www.youtube.com/channel/UCOObyrR-kbuu2L94zgjm1Cg"><li><p className="pb-2">Hướng dẫn đặt mua</p></li></a>
+                <a href="https://www.youtube.com/channel/UCOObyrR-kbuu2L94zgjm1Cg"><li><p className="pb-2">Tra cứu địa chỉ bảo hành</p></li></a>
               </div>
             </ul>
 
@@ -96,9 +97,11 @@ const Footer = () => {
           <div className='md:flex justify-center items-center ' >
             <h6 className='pr-4'>LIÊN HỆ VỚI CHÚNG TÔI</h6>
             <div className='flex'>
-              <img src={contact1} className='rounded-full mr-2 w-[20px] md:w-[36px]' alt="contact" loading='lazy'/>
-              <img src={contact2} className='rounded-full mr-2 w-[20px] md:w-[36px]' alt="contact" loading='lazy'/>
-              <img src={contact3} className='rounded-full mr-2 w-[20px] md:w-[36px]' alt="contact" loading='lazy'/></div>
+              <a href="https://www.facebook.com/nta.2410"><img src={contact1} className='rounded-full mr-2 w-[20px] md:w-[36px]' alt="contact" loading='lazy'/></a>
+              <a href="https://github.com/Horob1"><img src={contact2} className='rounded-full mr-2 w-[20px] md:w-[36px]' alt="contact" loading='lazy'/></a>
+              <a href="https://www.youtube.com/channel/UCOObyrR-kbuu2L94zgjm1Cg"><img src={contact3} className='rounded-full mr-2 w-[20px] md:w-[36px]' alt="contact" loading='lazy'/></a>
+             
+              </div>
             </div>
           <div>
             <img src={bct} className='w-[100px] absolute right-0 top-1/2 -translate-y-1/2 md:w-[160px]' alt="certificate"   loading='lazy'/>
