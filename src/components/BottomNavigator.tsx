@@ -1,5 +1,6 @@
 import { CiDesktopMouse1, CiHeadphones } from "react-icons/ci"
 import { FaRegKeyboard } from "react-icons/fa6"
+import { GrLogout } from "react-icons/gr"
 import { IoIosSearch } from "react-icons/io"
 import { IoCameraOutline, IoMenu, IoPersonOutline } from "react-icons/io5"
 import { LuComponent } from "react-icons/lu"
@@ -33,7 +34,7 @@ const BottomNavigator = () => {
           </div> 
           <div className="drawer-side">
             <label htmlFor="my-drawer-4" aria-label="close sidebar" className="drawer-overlay"></label>
-            <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
+            <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content ">
               <div className="pt-20"></div>
               {/* Sidebar content here */}
               <div className="px-4 py-8">
@@ -50,7 +51,10 @@ const BottomNavigator = () => {
               <li><div className="flex items-center"><CiDesktopMouse1 className="text-2xl mx-2"/>Chuột</div></li>
               <li><div className="flex items-center"><CiHeadphones className="text-2xl font- mx-2"/>Tai nghe</div></li>
               <li><div className="flex items-center"><LuComponent className="text-2xl font- mx-2"/>Link kiện</div></li>
+              <li><div className="flex items-center mt-20"><GrLogout className="text-2xl font- mx-2"/>Đăng xuất</div></li>
             </ul>
+            
+           
           </div>
         </div>
       </button>

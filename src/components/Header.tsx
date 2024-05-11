@@ -53,7 +53,7 @@ const Header = () => {
               <p className='leading-4 text-white'>Showroom</p>
             </div>
           </div></Link>
-          <Link to={'/me/order'}><div className='hidden md:flex cursor-pointer text-white items-center ml-2'>
+          <Link to={'/user/order'}><div className='hidden md:flex cursor-pointer text-white items-center ml-2'>
             <IoClipboard  className='text-2xl mr-2' />
             <div className='hidden xl:block'>
               <p className='leading-4 text-white'>Tra cứu</p>
