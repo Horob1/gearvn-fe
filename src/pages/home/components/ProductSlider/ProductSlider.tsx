@@ -29,6 +29,7 @@ const ProductSlider = () => {
               slidesPerView: 4,
               spaceBetween: 12,
             }}}
+            allowTouchMove={false}
             freeMode = {true}
             loop={true}
             modules={[FreeMode, Navigation, Autoplay]}
