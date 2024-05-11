@@ -21,7 +21,7 @@ const LogIn = () => {
   }, []);
   return (
       <dialog id="my_modal_login" className="modal">
-        <div className="modal-box w-96">
+        <div className="modal-box bg-white w-96">
           <form method="dialog">
             {/* if there is a button in form, it will close the modal */}
               <button onClick={()=>setTab(false)} className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>

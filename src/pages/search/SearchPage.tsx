@@ -32,54 +32,54 @@ const SearchPage = () => {
         </div>
         <div className="w-full">
           <div className="flex gap-4 pb-4 items-baseline">  
-            <div className="dropdown">
-              <div tabIndex={0} role="button" className={`bg-gray-200 btn hover:bg-red-600 hover:text-white border-1 ${value[0]===40000 && value[1]===100000000? '' : 'bg-red-600 text-white'}`}>Giá <MdOutlineArrowDropDown className="text-base"></MdOutlineArrowDropDown></div>
-                <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-80">
+            <div className="dropdown ">
+              <div tabIndex={0} role="button" className={`bg-gray-200 btn hover:bg-red-600 text-black hover:text-white border-0 ${value[0]===40000 && value[1]===100000000? '' : 'bg-red-600 text-white'}`}>Giá <MdOutlineArrowDropDown className="text-base"></MdOutlineArrowDropDown></div>
+                <ul tabIndex={0} className="dropdown-content bg-white  z-[1] menu p-2 shadow rounded-box w-80">
                   <div className="px-2 py-1.5">
                   <div className="flex gap-20 mb-6"><span className="px-2 py-1.5 rounded-md text-center flex-1 border">{value[0].toLocaleString('vi-VN')}đ</span><span className="px-2 py-1.5 rounded-md flex-1 text-center w-30 border">{value[1].toLocaleString('vi-VN')}đ</span></div>
-                    <RangeSlider className=" w-full" min={50000} max={100000000} step={500000} value={value} onInput={setValue} />
+                    <RangeSlider className=" w-full " min={50000} max={100000000} step={500000} value={value} onInput={setValue} />
                   </div>
                 </ul>
             </div>   
             <div className="dropdown">
-              <div tabIndex={0} role="button" className={`bg-gray-200 hover:bg-red-600 hover:text-white btn border-1`}>Loại sản phẩm <MdOutlineArrowDropDown className="text-base"></MdOutlineArrowDropDown></div>
-                <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-80">
+              <div tabIndex={0} role="button" className={`bg-gray-200 text-black hover:bg-red-600 hover:text-white btn border-0`}>Loại sản phẩm <MdOutlineArrowDropDown className="text-base"></MdOutlineArrowDropDown></div>
+                <ul tabIndex={0} className="dropdown-content bg-white z-[1] menu p-2 shadow rounded-box w-80">
                   <div className="px-2 py-1.5 grid grid-cols-4 gap-3">
-                    <button className="col-span-2 btn hover:text-white hover:bg-red-600 ">PC</button>
-                    <button className="col-span-2 btn hover:text-white hover:bg-red-600 ">LAPTOP</button>
-                    <button className="col-span-2 btn hover:text-white hover:bg-red-600 ">CAMERA</button>
-                    <button className="col-span-2 btn hover:text-white hover:bg-red-600 ">MÀN HÌNH</button>
-                    <button className="col-span-2 btn hover:text-white hover:bg-red-600 ">BÀN PHÍM</button>
-                    <button className="col-span-2 btn hover:text-white hover:bg-red-600 ">CHUỘT</button>
-                    <button className="col-span-2 btn hover:text-white hover:bg-red-600 ">TAI NGHE</button>
-                    <button className="col-span-2 btn hover:text-white hover:bg-red-600 ">LINH KIỆN</button>
+                    <button className="col-span-2 btn bg-white border-[1px] hover:border-0 text-black hover:text-white hover:bg-red-600 ">PC</button>
+                    <button className="col-span-2 btn bg-white border-[1px] hover:border-0 text-black hover:text-white hover:bg-red-600 ">LAPTOP</button>
+                    <button className="col-span-2 btn bg-white border-[1px] hover:border-0 text-black hover:text-white hover:bg-red-600 ">CAMERA</button>
+                    <button className="col-span-2 btn bg-white border-[1px] hover:border-0 text-black hover:text-white hover:bg-red-600 ">MÀN HÌNH</button>
+                    <button className="col-span-2 btn bg-white border-[1px] hover:border-0 text-black hover:text-white hover:bg-red-600 ">BÀN PHÍM</button>
+                    <button className="col-span-2 btn bg-white border-[1px] hover:border-0 text-black hover:text-white hover:bg-red-600 ">CHUỘT</button>
+                    <button className="col-span-2 btn bg-white border-[1px] hover:border-0 text-black hover:text-white hover:bg-red-600 ">TAI NGHE</button>
+                    <button className="col-span-2 btn bg-white border-[1px] hover:border-0 text-black hover:text-white hover:bg-red-600 ">LINH KIỆN</button>
                   </div>
                 </ul>
             </div>
             <div className="dropdown">
-              <div tabIndex={0} role="button" className={`bg-gray-200 hover:bg-red-600 hover:text-white btn border-1 ${brands.length===1 && brands[0]===""? '' : 'bg-red-600 text-white'}`}>Thương hiệu <MdOutlineArrowDropDown className="text-base"></MdOutlineArrowDropDown></div>
-                <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-80">
+              <div tabIndex={0} role="button" className={`bg-gray-200  text-black hover:bg-red-600 hover:text-white btn border-0 ${brands.length===1 && brands[0]===""? '' : 'bg-red-600 text-white'}`}>Thương hiệu <MdOutlineArrowDropDown className="text-base"></MdOutlineArrowDropDown></div>
+                <ul tabIndex={0} className="dropdown-content bg-white z-[1] menu p-2 shadow rounded-box w-80">
                   <div className="px-2 py-1.5 grid grid-cols-4 gap-3">
-                    <button className="btn hover:text-white hover:bg-red-600 ">ACER</button>
-                    <button className="btn hover:text-white hover:bg-red-600 ">ASUS</button>
-                    <button className="btn hover:text-white hover:bg-red-600 ">HP</button>
-                    <button className="btn hover:text-white hover:bg-red-600 ">DELL</button>
-                    <button className="btn hover:text-white hover:bg-red-600 ">MSI</button>
-                    <button className="btn hover:text-white hover:bg-red-600 ">SONY</button>
-                    <button className="col-span-2 btn hover:text-white hover:bg-red-600 ">LENOVO</button>
-                    <button className="btn hover:text-white hover:bg-red-600 ">RAZER</button>
-                    <button className="col-span-3 btn hover:text-white hover:bg-red-600 ">KHÔNG THƯƠNG HIỆU</button>
-                    <button className="col-span-2 btn hover:text-white hover:bg-red-600 " onClick={()=> toggleBrand("GIGABYTE")}>GIGABYTE</button>
+                    <button className="btn  bg-white text-black hover:text-white hover:bg-red-600 border-[1px] hover:border-0 ">ACER</button>
+                    <button className="btn  bg-white text-black hover:text-white hover:bg-red-600 border-[1px] hover:border-0 ">ASUS</button>
+                    <button className="btn  bg-white text-black hover:text-white hover:bg-red-600 border-[1px] hover:border-0 ">HP</button>
+                    <button className="btn  bg-white text-black hover:text-white hover:bg-red-600 border-[1px] hover:border-0 ">DELL</button>
+                    <button className="btn  bg-white text-black hover:text-white hover:bg-red-600 border-[1px] hover:border-0 ">MSI</button>
+                    <button className="btn  bg-white text-black hover:text-white hover:bg-red-600 border-[1px] hover:border-0 ">SONY</button>
+                    <button className="col-span-2 btn  bg-white text-black hover:text-white hover:bg-red-600 border-[1px] hover:border-0 ">LENOVO</button>
+                    <button className="btn  bg-white text-black hover:text-white hover:bg-red-600 border-[1px] hover:border-0 ">RAZER</button>
+                    <button className="col-span-3 btn  bg-white text-black hover:text-white hover:bg-red-600 border-[1px] hover:border-0 ">KHÔNG THƯƠNG HIỆU</button>
+                    <button className="col-span-2 btn  bg-white text-black hover:text-white hover:bg-red-600 border-[1px] hover:border-0 " onClick={()=> toggleBrand("GIGABYTE")}>GIGABYTE</button>
                   </div>
                 </ul>
             </div>
-            <button className="btn hover:bg-red-600 hover:text-white ">Bán chạy</button>
+            <button className="btn bg-gray-200 border-0 text-black hover:bg-red-600 hover:text-white ">Bán chạy</button>
             <div className="dropdown">
-              <div tabIndex={0} role="button" className={`bg-gray-200 hover:bg-red-600 hover:text-white btn border-1`}>Sắp xếp theo giá <MdOutlineArrowDropDown className="text-base"></MdOutlineArrowDropDown></div>
-                <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-60">
+              <div tabIndex={0} role="button" className={`bg-gray-200 text-black hover:bg-red-600 hover:text-white btn border-0`}>Sắp xếp theo giá <MdOutlineArrowDropDown className="text-base"></MdOutlineArrowDropDown></div>
+                <ul tabIndex={0} className="dropdown-content bg-white z-[1] menu p-2 shadow rounded-box w-60">
                   <div className="px-2 py-1.5 grid grid-cols-3 gap-3">
-                    <button className="col-span-3 btn hover:text-white hover:bg-red-600 ">Từ thấp tới cao</button>
-                    <button className="col-span-3 btn hover:text-white hover:bg-red-600 ">Từ cao đến thấp</button>
+                    <button className="col-span-3 btn bg-white border-[1px] hover:border-0 text-black hover:text-white hover:bg-red-600 ">Từ thấp tới cao</button>
+                    <button className="col-span-3 btn bg-white border-[1px] hover:border-0 text-black hover:text-white hover:bg-red-600 ">Từ cao đến thấp</button>
                   </div>
                 </ul>
             </div>
