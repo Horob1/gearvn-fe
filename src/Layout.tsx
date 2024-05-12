@@ -3,6 +3,7 @@ import Footer from "./components/Footer.tsx"
 import TopBanner from "./components/TopBanner.tsx"
 import Header from "./components/Header.tsx"
 import BottomNavigator from "./components/BottomNavigator.tsx"
+import LiveChatComponent from "./components/LiveChat/LiveChatComponent.tsx"
 
 
 const Layout = () => {
@@ -12,6 +13,7 @@ const Layout = () => {
     <Header/>
     <Outlet/>
     <Footer/>
+    <LiveChatComponent/>
     <BottomNavigator/>
     </main>
   )

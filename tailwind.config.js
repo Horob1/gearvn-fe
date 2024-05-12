@@ -91,6 +91,14 @@ export default {
           '0%': { transform: 'translateX(0)' },
           '100%': { transform: 'translateX(300%)' },
         },
+        goFromBottom: {
+          '0%': { transform: 'translateY(100%)' },
+          '100%': { transform: 'translateY(0)' },
+        },
+        leftToBottom: {
+          '0%': { transform: 'translateY(0)' },
+          '100%': { transform: 'translateY(100%)' },
+        },
         wiggle: {
           '0%, 100%': { transform: 'rotate(-3deg)' },
           '50%': { transform: 'rotate(3deg)' },
@@ -116,6 +124,8 @@ export default {
         scale:'scale 0.5s ease-in-out',
         border: 'border 0.5s forwards',
         tiny: 'tiny 0.5s ease-in-out',
+        goFromBottom: 'goFromBottom 1s ease-in-out',
+        leftToBottom: 'leftToBottom 1s forwards',
       }
     },
   },
