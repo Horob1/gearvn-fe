@@ -15,7 +15,7 @@ const UserPage = () => {
             className={({ isActive }) =>
               isActive
                 ? 'text-lg font-medium text-[#E30019]  hover:text-[#E30019]'
-                : 'text-lg font-medium'
+                : 'text-lg font-medium text-black'
             }
             >
               <li className="px-2 py-1.5 flex gap-3 items-center"><IoPersonOutline/> Thông tin cá nhân</li>
@@ -25,7 +25,7 @@ const UserPage = () => {
             className={({ isActive }) =>
               isActive
                 ? 'text-lg font-medium text-[#E30019]  hover:text-[#E30019]'
-                : 'text-lg font-medium'
+                : 'text-lg font-medium text-black'
             }
             >
               <li className="px-2 py-2 flex gap-3 items-center"><LuShoppingCart/> Giỏ hàng của tôi</li>
@@ -35,12 +35,12 @@ const UserPage = () => {
             className={({ isActive }) =>
               isActive
                 ? 'text-lg font-medium text-[#E30019]  hover:text-[#E30019]'
-                : 'text-lg font-medium'
+                : 'text-lg font-medium text-black'
             }
             >
-              <li className="px-2 py-2 flex gap-3 items-center"><IoClipboard/> Quản lý đơn hàng</li>
+              <li className="px-2 py-2  flex gap-3 items-center"><IoClipboard/> Quản lý đơn hàng</li>
             </NavLink>
-            <li className="text-lg font-medium  hover:text-[#E30019] px-2 py-2 flex gap-3 items-center"><GrLogout/> Đăng xuất</li>
+            <li className="text-lg font-medium text-black hover:text-[#E30019] px-2 py-2 flex gap-3 items-center"><GrLogout/> Đăng xuất</li>
           </ul>
         </div>
         <div className="md:col-span-4">
