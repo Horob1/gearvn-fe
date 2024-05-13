@@ -28,7 +28,7 @@ const Footer = () => {
         <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-12 gap-4 py-2 pb-4 border-b-2">
           <div className="md:col-span-1 lg:col-span-2">
             <ul>
-              <h6 className="pb-3">VỀ GEARVN</h6>
+              <Link to={'/about'}><h6 className="pb-3">VỀ GEARVN</h6></Link>
               <li><p className="pb-2">Giới thiệu</p></li>
               <a href="https://www.youtube.com/channel/UCOObyrR-kbuu2L94zgjm1Cg"><li><p className="pb-2">Tuyển dụng</p></li></a>
             </ul>

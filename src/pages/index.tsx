@@ -8,4 +8,5 @@ import UserInfo from "./user/components/UserInfo.tsx";
 import MyCartList from "./user/components/MyCartList.tsx";
 import MyOrderList from "./user/components/MyOrderList.tsx";
 import BuyPage from "./buy/BuyPage.tsx";
-export { HomePage, Showroom, SearchPage, ErrorPage, ProductDetail, UserPage, UserInfo, MyCartList, MyOrderList, BuyPage};
+import AboutPage from "./about/AboutPage.tsx";
+export { HomePage, Showroom, SearchPage, ErrorPage, ProductDetail, UserPage, UserInfo, MyCartList, MyOrderList, BuyPage, AboutPage};
