@@ -2,6 +2,9 @@ import avatar from './../../assets/avatar.png'
 import { IoSend } from "react-icons/io5";
 import { ConversationBox } from './ConversationBox';
 
+
+
+import './chatbox.css'
 type ChatBoxProps = {
   setShowChatbox: React.Dispatch<React.SetStateAction<number>>,
   showChatbox: number
@@ -10,7 +13,7 @@ type ChatBoxProps = {
 const ChatBox = ({setShowChatbox,showChatbox}: ChatBoxProps) => {
 
   return (
-    <div className={`fixed z-50 bottom-0 w-[300px] h-[500px] right-8 ${showChatbox===0 ? 'bottom-[-500px]' : showChatbox===1 ? 'animate-goFromBottom' : 'animate-leftToBottom' }`}>
+    <div className={`fixed z-50 chat-box bottom-0 w-[300px] h-[500px] right-8 ${showChatbox===0 ? 'bottom-[-500px]' : showChatbox===1 ? 'animate-goFromBottom' : 'animate-leftToBottom' }`}>
         <div className="w-[300px] bg-white rounded-md shadow-2xl">
           <div className="w-full p-4 rounded-t-md flex items-center justify-between bg-[#E30019]">
             <div className="flex gap-4 items-center">

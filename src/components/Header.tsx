@@ -8,6 +8,7 @@ import { IoClipboard } from "react-icons/io5";
 import { LuShoppingCart } from "react-icons/lu";
 import { IoPersonOutline } from "react-icons/io5";
 import RearBanner from './RearBanner';
+import { SearchResult } from './SearchResult';
 
 const Header = () => {
   const location = useLocation()
@@ -38,6 +39,7 @@ const Header = () => {
           <form className='relative hidden md:flex'>
             <input type="text" required placeholder='Bạn cần tìm gì?' className='py-2 px-2 text-base lg:w-[312px] xl:[200px] font-medium rounded-md focus:outline-double focus:outline-2 focus:outline-red-400 pr-12 '/>
             <button type='submit' className=' absolute top-1/2 -translate-y-1/2 right-2'><IoIosSearch className='text-xl' /></button>
+            <SearchResult/>
           </form>
           <Link to={'/about'}><div className='hidden md:flex cursor-pointer text-white items-center ml-2'>
             <PiHeadsetBold className='text-2xl mr-2' />
