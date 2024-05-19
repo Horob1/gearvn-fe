@@ -9,10 +9,13 @@ import { LuShoppingCart } from "react-icons/lu";
 import { IoPersonOutline } from "react-icons/io5";
 import RearBanner from './RearBanner';
 import { SearchResult } from './SearchResult';
+import { useSelector } from 'react-redux';
+import { RootState } from '../store';
 
 const Header = () => {
   const location = useLocation()
   const navigate = useNavigate()
+  const myInfor = useSelector((state: RootState)=> state.user)
   const showNavbar = () => {
     if(location.pathname !== '/') navigate('/')
     const navbar = document.getElementById('my-custom-navbar')
@@ -25,10 +28,12 @@ const Header = () => {
       },1200)
     }
   }
-  const showModalLogin = () => {
+  const handleUserBtn = () => {
+    
+    if(myInfor.isAuthenticated) navigate('/user/my-info')
     // eslint-disable-next-line
     // @ts-ignore: Unreachable code error
-    document.getElementById('my_modal_login').showModal()
+    else document.getElementById('my_modal_login').showModal()
   }
   return (
     <div className="sticky top-0  bg-[#E30019] z-40 ">
@@ -70,7 +75,7 @@ const Header = () => {
             </div>
             <p className='leading-4 text-white hidden xl:block'>Giỏ hàng</p>
           </div>
-          <button onClick={showModalLogin} className='bg-[#BE1529] hover:bg-red-900  py-1.5 px-2 rounded-md hidden md:flex items-center'><IoPersonOutline className='text-white text-2xl'/><span className='text-white pl-1.5 hidden xl:block'>Đăng nhập</span></button>
+          <button onClick={handleUserBtn} className='bg-[#BE1529] hover:bg-red-900  py-1.5 px-2 rounded-md hidden md:flex items-center'><IoPersonOutline className='text-white text-2xl line-clamp-1'/><span className='text-white pl-1.5 hidden xl:block'>{myInfor.isAuthenticated? myInfor.user.name: "Đăng nhập"}</span></button>
       </div>
       <RearBanner/>
     </div>

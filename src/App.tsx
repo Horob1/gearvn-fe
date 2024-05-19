@@ -3,8 +3,22 @@ import './App.css'
 import Layout from './Layout.tsx'
 import { ErrorPage, HomePage, UserPage, ProductDetail, SearchPage, Showroom, UserInfo, MyCartList, MyOrderList, BuyPage, AboutPage } from './pages/index.tsx'
 import LogIn from './components/auth/LogIn.tsx'
+import { useEffect } from 'react'
+import { RootState, useAppDispatch } from './store.ts'
+import { getMe } from './slice/user.slice.ts'
+import 'react-toastify/dist/ReactToastify.css';
+import { useSelector } from 'react-redux'
+
 
 function App() {
+  const dispatch = useAppDispatch()
+  const isAuthenticated = useSelector((state: RootState) => state.user.isAuthenticated)
+  useEffect(()=> {
+    const action = dispatch(getMe());
+    return () => {
+      action.abort();
+    }
+  }, [dispatch])
   return (
     <>
       <Routes>   
@@ -24,7 +38,7 @@ function App() {
         </Route>
         <Route path='*' element={<Navigate replace to="/404" />} />
       </Routes>
-      <LogIn></LogIn>
+      {!isAuthenticated && <LogIn></LogIn>}
     </>
   )
 }

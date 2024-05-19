@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import RegisterTab from "./RegisterTab";
 import LoginTab from "./LoginTab";
+import { Bounce, ToastContainer } from "react-toastify";
 
 const LogIn = () => {
   const [tab, setTab] = useState(false)
@@ -37,6 +38,20 @@ const LogIn = () => {
             </div>
           </form>
         </div>
+        <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        transition={Bounce}
+        className='z-50'
+        />
       </dialog>
 
   )

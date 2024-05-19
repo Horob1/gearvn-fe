@@ -6,9 +6,19 @@ import { IoCameraOutline, IoMenu, IoPersonOutline } from "react-icons/io5"
 import { LuComponent } from "react-icons/lu"
 import { MdMonitor } from "react-icons/md"
 import { PiComputerTowerLight, PiLaptopLight } from "react-icons/pi"
-import { NavLink } from "react-router-dom"
+import { useSelector } from "react-redux"
+import { NavLink, useNavigate } from "react-router-dom"
+import { RootState } from "../store"
 
 const BottomNavigator = () => {
+  const navigate = useNavigate()
+  const myInfor = useSelector((state: RootState)=> state.user)
+  const handleUserBtn = () => {
+    if(myInfor.isAuthenticated) navigate('/user/my-info')
+    // eslint-disable-next-line
+    // @ts-ignore: Unreachable code error
+    else document.getElementById('my_modal_login').showModal()
+  }
   return (
     <div className="md:hidden btm-nav bg-white">
       <NavLink
@@ -58,9 +68,9 @@ const BottomNavigator = () => {
           </div>
         </div>
       </button>
-      <button className="z-0">
+      <button onClick={handleUserBtn} className="z-0">
         <IoPersonOutline />
-        <span className="z-0 btm-nav-label">Đăng nhập</span>
+        <span className="z-0 btm-nav-label">{myInfor.isAuthenticated? myInfor.user.name: "Đăng nhập"}</span>
       </button>
     </div>
   )
