@@ -1,6 +1,7 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import logo from './../assets/logo-white.png'
 import { IoMenu } from "react-icons/io5";
+import { FaRegHandSpock } from "react-icons/fa";
 import { IoIosSearch } from "react-icons/io";
 import { PiHeadsetBold } from "react-icons/pi";
 import { FaLocationDot } from "react-icons/fa6";
@@ -10,11 +11,25 @@ import { IoPersonOutline } from "react-icons/io5";
 import RearBanner from './RearBanner';
 import { SearchResult } from './SearchResult';
 import { useSelector } from 'react-redux';
-import { RootState } from '../store';
-
+import { RootState, useAppDispatch } from '../store';
+import './Header.css'
+import { toast } from 'react-toastify';
+import { logOut } from '../slice/user.slice';
+import axios from './../utils/axios.ts'
+import { GrLogout } from 'react-icons/gr';
 const Header = () => {
   const location = useLocation()
   const navigate = useNavigate()
+  const dispatch = useAppDispatch()
+  const handleLogOut = async() => {
+    try {
+      await axios.post('/api/auth/logOut')
+      dispatch(logOut())
+      navigate('/')
+    } catch (error) {
+      toast.error("Có lỗi! Xin Thử lại")
+    }
+  }
   const myInfor = useSelector((state: RootState)=> state.user)
   const showNavbar = () => {
     if(location.pathname !== '/') navigate('/')
@@ -28,12 +43,14 @@ const Header = () => {
       },1200)
     }
   }
-  const handleUserBtn = () => {
-    
-    if(myInfor.isAuthenticated) navigate('/user/my-info')
+  const handleLoginBtn = () => {
+    if(!myInfor.isAuthenticated)
     // eslint-disable-next-line
     // @ts-ignore: Unreachable code error
-    else document.getElementById('my_modal_login').showModal()
+      document.getElementById('my_modal_login').showModal()
+  }
+  const handleUserBtn = () => {
+    if(myInfor.isAuthenticated) navigate('/user/my-info')
   }
   return (
     <div className="sticky top-0  bg-[#E30019] z-40 ">
@@ -75,7 +92,19 @@ const Header = () => {
             </div>
             <p className='leading-4 text-white hidden xl:block'>Giỏ hàng</p>
           </div>
-          <button onClick={handleUserBtn} className='bg-[#BE1529] hover:bg-red-900  py-1.5 px-2 rounded-md hidden md:flex items-center'><IoPersonOutline className='text-white text-2xl line-clamp-1'/><span className='text-white pl-1.5 hidden xl:block'>{myInfor.isAuthenticated? myInfor.user.name: "Đăng nhập"}</span></button>
+          <button onClick={handleLoginBtn} className='btn-user bg-[#BE1529] hover:bg-red-900  py-1.5 px-2 rounded-md hidden md:flex items-center relative'><IoPersonOutline className='text-white text-2xl line-clamp-1'/><span className='text-white pl-1.5 hidden xl:block'>{myInfor.isAuthenticated? myInfor.user.name: "Đăng nhập"}</span>
+            {myInfor.isAuthenticated && 
+            <div className='absolute user-option-container top-[100%] right-0 min-w-[320px] animate-fadeIn'>
+              <div className='user-option mt-3 p-4 bg-white rounded-md shadow'>
+                <ul>
+                  <li onClick={handleUserBtn} className='flex items-center gap-4 hover:underline border-b-2 pb-3'><FaRegHandSpock className='text-xl font-bold' /><span className='font-bold'>Xin chào, {myInfor.user.name}</span></li>
+                  <Link to={'/user/my-cart'}><li className='flex items-center gap-4 hover:underline py-2'><LuShoppingCart className='text-xl' /><span>Giỏ hàng của tôi</span></li></Link>
+                  <Link to={'/user/my-order'}><li className='flex items-center gap-4 hover:underline py-2'><IoClipboard className='text-xl' /><span>Đơn hàng của tôi</span></li></Link>
+                  <li onClick={handleLogOut} className='flex items-center gap-4 hover:underline border-t-2 pt-3'><GrLogout className='text-xl' /><span>Đăng xuất</span></li>
+                </ul>
+              </div>
+            </div>}
+          </button>
       </div>
       <RearBanner/>
     </div>

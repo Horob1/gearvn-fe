@@ -71,6 +71,14 @@ export default {
             transform: 'scale(1)',
           }
         },
+        fadeIn: {
+          '0%': {
+            opacity: '0',
+            },
+          '100%': {
+            opacity: '1',
+          }
+        },
         tiny: {
           '0%': {
             transform: 'scale(1)',
@@ -126,6 +134,8 @@ export default {
         tiny: 'tiny 0.5s ease-in-out',
         goFromBottom: 'goFromBottom 1s ease-in-out',
         leftToBottom: 'leftToBottom 1s forwards',
+        fadeIn: 'fadeIn 0.3s ease-in-out',
+
       }
     },
   },

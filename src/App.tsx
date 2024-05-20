@@ -8,6 +8,7 @@ import { RootState, useAppDispatch } from './store.ts'
 import { getMe } from './slice/user.slice.ts'
 import 'react-toastify/dist/ReactToastify.css';
 import { useSelector } from 'react-redux'
+import ProtectedRoute, { ProtectedRouteProps } from './components/ProtectedRoute.tsx'
 
 
 function App() {
@@ -18,7 +19,10 @@ function App() {
     return () => {
       action.abort();
     }
-  }, [dispatch])
+  }, [dispatch, isAuthenticated]);
+  const defaultProtectedRouteProps: Omit<ProtectedRouteProps, 'outlet'> = {
+    isAuthenticated: isAuthenticated,
+  };
   return (
     <>
       <Routes>   
@@ -27,7 +31,7 @@ function App() {
           <Route path='showroom' element={<Showroom></Showroom>}></Route>
           <Route path='search' element={<SearchPage/>}></Route>
           <Route path='about' element={<AboutPage/>}></Route>
-          <Route path='user' element={<UserPage/>}>
+          <Route path='user' element={<ProtectedRoute {...defaultProtectedRouteProps} outlet={<UserPage/>}/>}>
             <Route path='my-info' element={<UserInfo/>}></Route>
             <Route path='my-cart' element={<MyCartList/>}></Route>
             <Route path='my-order' element={<MyOrderList/>}></Route>

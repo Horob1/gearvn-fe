@@ -1,10 +1,14 @@
-const ProtectedRoute = () => {
-  
-  return (
-    <>
-      
-    </>
-  )
-}
+import { Navigate } from "react-router-dom";
 
-export default ProtectedRoute
+export type ProtectedRouteProps = {
+  isAuthenticated: boolean;
+  outlet: JSX.Element;
+};
+
+export default function ProtectedRoute({isAuthenticated, outlet}: ProtectedRouteProps) {
+  if(isAuthenticated) {
+    return outlet;
+  } else {
+    return <Navigate to={{ pathname: '/' }} />;
+  }
+}
