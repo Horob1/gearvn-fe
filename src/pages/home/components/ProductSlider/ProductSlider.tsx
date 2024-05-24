@@ -117,7 +117,7 @@ const ProductSlider = ({type} : ProductSliderProps) => {
       <button className="absolute top-1/2 -translate-y-1/2 left-1 bg-slate-200 rounded-full swiper-button-prev z-10 p-2 hover:text-red-600">
         <FaAngleLeft></FaAngleLeft>
       </button>
-      {products.length === 0 &&
+      {products?.length === 0 &&
         [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((item) => (
           <SwiperSlide key={item}>
             <ProductCard isLoading={true} product={null}/>
