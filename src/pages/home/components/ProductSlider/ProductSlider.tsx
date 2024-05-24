@@ -67,7 +67,6 @@ const ProductSlider = ({type} : ProductSliderProps) => {
           }
         );
         setProducts(res.data.filterProduct);
-        console.log(res.data.filterProduct);
       } catch (error) {
         //
       }

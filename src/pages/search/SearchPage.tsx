@@ -7,7 +7,7 @@ import { MdOutlineArrowDropDown } from "react-icons/md";
 import Catelog from "../home/components/Catelog";
 import { Helmet } from "react-helmet-async";
 import { ProductType } from "../home/components/ProductSlider/ProductSlider";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 const types = [
   { en: "Camera", vi: "Camera" },
   { en: "Component", vi: "Linh kiện" },
@@ -50,6 +50,8 @@ const SearchPage = () => {
   const [sortBySold, setSortBySold] = useState<boolean>(false);
   const [sortByPrice, setSortByPrice] = useState<boolean>(false);
   const navigate = useNavigate();
+  const params = useParams()
+  console.log(params);
 
   const handleSearchBtn = (e) => {
     e.preventDefault();
@@ -247,7 +249,7 @@ const SearchPage = () => {
               (có {result.length} kết quả)
             </span>
           </div>
-          {result.length===0 && (
+          {result.length === 0 && (
             <div className="p-10 mt-12 flex flex-col gap-4">
               <svg
                 className="m-auto"
@@ -257,7 +259,7 @@ const SearchPage = () => {
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
-                <g clip-path="url(#clip0_6133_13905)">
+                <g clipPath="url(#clip0_6133_13905)">
                   <path
                     d="M125.486 120.371H113.585V91.6562H132V113.845C132 117.451 129.086 120.371 125.486 120.371Z"
                     fill="#A1AAAF"

@@ -47,7 +47,7 @@ const ProductCard = ({ isLoading, product }: ProductCardProps) => {
               </h6>
             </Link>
             <div className="p-1.5 bg-[#ECECEC] rounded-md">
-              <p className="grid grid-cols-2 gap-2">
+              <div className="grid grid-cols-2 gap-2">
                 {product?.techSpecification?.CPU && (
                   <div className="flex items-center">
                     <GoCpu className="mr-2 text-xl" />
@@ -91,7 +91,7 @@ const ProductCard = ({ isLoading, product }: ProductCardProps) => {
                     </Marquee>
                   </div>
                 )}
-              </p>
+              </div>
             </div>
             <div>
               <span className="text-gray-500 line-through">
