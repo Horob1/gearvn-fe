@@ -1,17 +1,32 @@
-import img1 from './../../../assets/dummy/carousel/img1.webp'
-import img2 from './../../../assets/dummy/carousel/img2.webp'
-import img3 from './../../../assets/dummy/carousel/img3.webp'
-import img4 from './../../../assets/dummy/carousel/img4.webp'
-import img5 from './../../../assets/dummy/carousel/img5.webp'
-import img6 from './../../../assets/dummy/carousel/img6.webp'
+import { useEffect, useState } from 'react'
 import ImageSlider from './ImageSlider'
-
-const IMGS= [img1, img2, img3, img4, img5, img6];
-
+import axios from './../../../utils/axios.ts'
+import { BannerType } from '../../../components/RearBanner.tsx'
 export const Carousel = () => {
+  const [isLoading, setLoading] = useState(true)
+  const [banner, setBanner] = useState<BannerType[]>([])
+  useEffect(() =>{
+    const controller = new AbortController();
+    const signal = controller.signal;
+    const getBanner = async () => {
+      try {
+        const res = await axios.get('/api/banner?position=center&limit=6', {signal})
+          if(res?.data?.banner.length===6) {
+            setBanner(res?.data?.banner)
+            setLoading(false)
+          }
+      } catch (error) {
+        //
+      }
+    }
+    getBanner()
+    return () => {
+       controller.abort();
+    }
+  },[])
   return (
     <div className="carousel rounded-md md:h-96 w-full ">
-      <ImageSlider isLoading={false} imgs={IMGS}></ImageSlider>
+      <ImageSlider isLoading={isLoading} imgs={banner}></ImageSlider>
     </div>
   )
 }

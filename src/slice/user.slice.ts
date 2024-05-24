@@ -21,9 +21,14 @@ const initialState: UserState = {
 export const getMe = createAsyncThunk(
   'user/getMe',
   async (_, thunkAPI) => {
-    const response = await axios.get('/api/user/me', {
-      signal: thunkAPI.signal
-    })
+    const response = await axios.get("/api/user/me", {
+      headers: {
+        "Cache-Control": "no-cache",
+        Pragma: "no-cache",
+        Expires: "0",
+      },
+      signal: thunkAPI.signal,
+    });
     return response.data
   },
 )

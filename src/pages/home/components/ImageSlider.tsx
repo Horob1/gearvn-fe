@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react"
 import { FaImage, FaAngleLeft, FaAngleRight } from "react-icons/fa6";
 import { RiSubtractFill } from "react-icons/ri";
+import { BannerType } from "../../../components/RearBanner";
 
 type ImageSliderProps = {
-  imgs: string[],
+  imgs: BannerType[]
   isLoading: boolean
 }
 
@@ -36,7 +37,7 @@ const ImageSlider = ({imgs, isLoading}: ImageSliderProps) => {
       </div>
       :
       <div className="w-full relative md:h-96">
-        <img key={index} className="w-full h-full rounded-md animate-blinker" src={imgs[index]} alt="center-banner" />
+        <img key={imgs[index]?._id} className="w-full h-full rounded-md animate-blinker" src={imgs[index].imageURL} alt="center-banner" />
         <button onClick={handleLeftButton}
         className="absolute top-1/2 -translate-y-1/2 left-2 text-white cursor-pointer z-2"
         >
