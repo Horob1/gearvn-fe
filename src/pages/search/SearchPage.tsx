@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import RangeSlider from "react-range-slider-input";
 import "react-range-slider-input/dist/style.css";
-import { IoIosSearch } from "react-icons/io";
-// import ProductCard from "../home/components/ProductSlider/ProductCard"
+// import { IoIosSearch } from "react-icons/io";
+import ProductCard from "../home/components/ProductSlider/ProductCard"
 import { MdOutlineArrowDropDown } from "react-icons/md";
 import Catelog from "../home/components/Catelog";
 import { Helmet } from "react-helmet-async";
 import { ProductType } from "../home/components/ProductSlider/ProductSlider";
-import { useNavigate, useParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
+import axios from "./../../utils/axios.ts";
 const types = [
   { en: "Camera", vi: "Camera" },
   { en: "Component", vi: "Linh kiện" },
@@ -42,28 +43,67 @@ const brands = [
   "Sony",
 ];
 const SearchPage = () => {
-  const [name, setName] = useState<string>("");
+  // const [name, setName] = useState<string>("");
   const [result, setResult] = useState<ProductType[]>([]);
   const [value, setValue] = useState([40000, 100000000]);
   const [typeDe, setTypeDe] = useState<string>("");
   const [brand, setBrand] = useState<string>("");
   const [sortBySold, setSortBySold] = useState<boolean>(false);
   const [sortByPrice, setSortByPrice] = useState<boolean>(false);
-  const navigate = useNavigate();
-  const params = useParams()
-  console.log(params);
+  // const navigate = useNavigate();
+  const [params] = useSearchParams();
+  // const handleSearchBtn = (e) => {
+  //   e.preventDefault();
+  //   navigate("/search?name=" + name);
+  // };
 
-  const handleSearchBtn = (e) => {
-    e.preventDefault();
-    navigate('/search?name='+name)
-  };
+  useEffect(() => {
+    // if(params.get('name')) setName(params.get('name') ?? '');
+    if(params.get('typeDevice')) setTypeDe(params.get('typeDevice')?? '');
+    if(params.get('brand')) setBrand(params.get('brand')?? '');
+    if(params.get('maxPrice')) setValue((prev) => [prev[0], Number(params.get("maxPrice")) ?? 100000000]);
+    if(params.get('minPrice')) setValue((prev) => [Number(params.get("minPrice")) ?? 0 , prev[1]]);
+    if (params.get("sort")) {
+      const sortArr = (params.get("sort") ?? '').split(",");
+      if (sortArr.includes("-sold")) setSortBySold(true);
+      if (sortArr.includes("-price")) setSortByPrice(true);
+      if (sortArr.includes("price")) setSortByPrice(false)
+    }
+  }, [params]);
+  useEffect(()=>{
+    const controller = new AbortController();
+    const callApi = async () => {
+      let query = "";
+      query += `name=${params.get("name") ?? ''}`;
+      if (brand) query += `&brand=${brand}`;
+      if (typeDe) query += `&typeDevice=${typeDe}`;
+      if (value) query += `&minPrice=${value[0]}&maxPrice=${value[1]}`;
+      query += "&sort=";
+      if (sortByPrice) query += "-price";
+      else query += "price";
+      if (sortBySold) query += ",-sold";
+      try {
+        const res = await axios.get("/api/product?" + query, {
+          signal: controller.signal,
+        });
 
-  useEffect(() => {}, []);
+        setResult(res?.data?.filterProduct ?? []);
+      } catch (error) {
+        //
+      }
+    }
+    callApi();
+    return () => {
+      controller.abort();
+    }
+
+  }, [value, typeDe,brand, sortBySold, sortByPrice, params])
+
   return (
     <div className="m-auto xl:max-w-[1220px] lg:max-w-[1000px] md:max-w-[100%] p-4 flex flex-col gap-4 justify-between items-center">
       <Helmet>
         <meta charSet="utf-8" />
-        <title>Kết quả tìm kiếm</title>
+        <title>Kết quả tìm kiếm {params.get('name') ?? ''}</title>
         <meta
           name="description"
           content="Tìm kiếm sản phẩm của hệ thống GEARVN"
@@ -71,7 +111,7 @@ const SearchPage = () => {
         {/* <link rel="canonical" href="http://mysite.com/example" /> */}
       </Helmet>
       <div className="px-4 pb-12 rounded-md gap-8 flex flex-col py-8 w-full bg-white">
-        <div className="flex flex-col gap-4 m-auto ">
+        {/* <div className="flex flex-col gap-4 m-auto ">
           <h3 className="text-center">TÌM KIẾM</h3>
           <form onSubmit={handleSearchBtn} className="relative flex">
             <input
@@ -88,7 +128,7 @@ const SearchPage = () => {
               <IoIosSearch className="text-xl" />
             </button>
           </form>
-        </div>
+        </div> */}
         <div className="w-full">
           <div className="flex gap-4 pb-4 items-baseline">
             <div className="dropdown ">
@@ -244,7 +284,7 @@ const SearchPage = () => {
           </div>
           <div className="flex gap-4 items-baseline">
             <span>Kết quả tìm kiếm cho:</span>
-            <span className="text-gray-500 text-lg">laptop acer</span>
+            <span className="text-gray-500 text-lg">{params.get('name') ?? ''}</span>
             <span className="text-red-600 text-lg">
               (có {result.length} kết quả)
             </span>
@@ -327,7 +367,10 @@ const SearchPage = () => {
             </div>
           )}
           <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 w-full">
-            {/* <ProductCard isLoading={false}></ProductCard> */}
+            {result.length !== 0 &&
+              result.map((result) => (
+                <ProductCard key={result._id} isLoading={false} product={result}></ProductCard>
+              ))}
           </div>
         </div>
       </div>
