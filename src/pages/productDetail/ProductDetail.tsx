@@ -36,7 +36,7 @@ const returnVietnamese = (item) => {
   if (item === "bluetooth") return "Bluetooth";
   if (item === "webcam") return "Webcam";
   if (item === "operatingSystem") return "Hệ điều hành";
-  if (item === "battery") return "Pin";
+  if (item === "battery") return "Nguồn";
   if (item === "weight") return "Trọng lượng";
   if (item === "color") return "Màu sắc";
   if (item === "dimensions") return "Kích thước";
