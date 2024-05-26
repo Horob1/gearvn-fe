@@ -20,6 +20,7 @@ import { GrLogout } from 'react-icons/gr';
 import { useEffect, useRef, useState } from 'react';
 import { ProductType } from '../pages/home/components/ProductSlider/ProductSlider.tsx';
 const Header = () => {
+  const [isOpen, setIsOpen] = useState(false)
   const [query, setQuery] = useState<string>('')
   const [searchResult, setSearchResult] = useState<ProductType[]>([])
   const searchRef = useRef<AbortController>()
@@ -103,17 +104,19 @@ const Header = () => {
           <input
             type="text"
             value={query}
+            onFocus={()=>setIsOpen(true)}
+            onBlur={()=>setIsOpen(false)}
             onChange={handleSearchIPOnChange}
             placeholder="Bạn cần tìm gì?"
             className="py-2 px-2 text-base lg:w-[312px] xl:[200px] font-medium rounded-md focus:outline-double focus:outline-2 focus:outline-red-400 pr-12 "
           />
           <button
             type="submit"
-            className=" absolute top-1/2 -translate-y-1/2 right-2"
+            className="absolute top-1/2 -translate-y-1/2 right-2"
           >
             <IoIosSearch className="text-xl" />
           </button>
-          <SearchResult query={query} result={searchResult}/>
+          <SearchResult isOpen={isOpen} query={query} result={searchResult}/>
         </form>
         <Link to={"/about"}>
           <div className="hidden md:flex cursor-pointer text-white items-center ml-2">

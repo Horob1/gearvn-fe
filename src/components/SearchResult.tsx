@@ -5,8 +5,10 @@ import { ProductType } from "../pages/home/components/ProductSlider/ProductSlide
 type SearchResultProps = {
   result: ProductType[];
   query: string;
+  isOpen: boolean;
 };
 export const SearchResult = ({
+  isOpen,
   result,
   query,
 }: SearchResultProps) => {
@@ -14,7 +16,7 @@ export const SearchResult = ({
   return (
     <div className={`search-result ${result.length === 0 ? "hidden" : ""}`}>
       <div className="px-4 pt-2 bg-white shadow-md rounded-md absolute w-[130%] max-h-[300px] top-[110%] left-0 overflow-y-auto">
-        {result &&
+        {result && isOpen &&
           result.map((item) => (
             <Link to={'/products/'+item.slug} key={item._id}>
               <div className="flex justify-between items-center pb-2 border-b-2">
