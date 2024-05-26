@@ -123,9 +123,6 @@ const ProductDetail = () => {
       action.abort();
     };
   }, [dispatch, params]);
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
   return (
     <div className="m-auto xl:max-w-[1220px] lg:max-w-[1000px] md:max-w-[100%]p-4">
       {isLoading ? (

@@ -1,4 +1,4 @@
-import { Navigate, Route, Routes } from 'react-router-dom'
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import './App.css'
 import Layout from './Layout.tsx'
 import { ErrorPage, HomePage, UserPage, ProductDetail, SearchPage, Showroom, UserInfo, MyCartList, MyOrderList, BuyPage, AboutPage } from './pages/index.tsx'
@@ -12,6 +12,7 @@ import ProtectedRoute, { ProtectedRouteProps } from './components/ProtectedRoute
 
 
 function App() {
+  const location = useLocation();
   const dispatch = useAppDispatch()
   const isAuthenticated = useSelector((state: RootState) => state.user.isAuthenticated)
   useEffect(()=> {
@@ -20,6 +21,9 @@ function App() {
       action.abort();
     }
   }, [dispatch, isAuthenticated]);
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }, [location]);
   const defaultProtectedRouteProps: Omit<ProtectedRouteProps, 'outlet'> = {
     isAuthenticated: isAuthenticated,
   };
