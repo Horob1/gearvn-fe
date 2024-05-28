@@ -2,8 +2,9 @@ import { useState } from "react"
 import getGoogleAuthUrl from "../../utils/getGoogleUrl"
 import axios from "./../../utils/axios.ts"
 import { useAppDispatch } from "../../store.ts"
-import { toast } from "react-toastify"
+
 import { getMe } from "../../slice/user.slice.ts"
+import toast from "react-hot-toast"
 const LoginTab = () => {
   const dispatch = useAppDispatch()
   const [formData, setFormData] = useState<{email: string, password: string}>({

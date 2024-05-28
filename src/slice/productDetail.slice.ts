@@ -48,8 +48,6 @@ const productDetailSlice = createSlice({
       state.product = null;
     });
     builder.addCase(getProductDetail.fulfilled, (state, action) => {
-
-      console.log(action.payload)
       state.product = action.payload;
       if (
         state.product &&

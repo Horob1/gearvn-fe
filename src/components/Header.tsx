@@ -1,5 +1,5 @@
-import { Link, useLocation, useNavigate } from 'react-router-dom'
-import logo from './../assets/logo-white.png'
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import logo from "./../assets/logo-white.png";
 import { IoMenu } from "react-icons/io5";
 import { FaRegHandSpock } from "react-icons/fa";
 import { IoIosSearch } from "react-icons/io";
@@ -8,64 +8,65 @@ import { FaLocationDot } from "react-icons/fa6";
 import { IoClipboard } from "react-icons/io5";
 import { LuShoppingCart } from "react-icons/lu";
 import { IoPersonOutline } from "react-icons/io5";
-import RearBanner from './RearBanner';
-import { SearchResult } from './SearchResult';
-import { useSelector } from 'react-redux';
-import { RootState, useAppDispatch } from '../store';
-import './Header.css'
-import { toast } from 'react-toastify';
-import { logOut } from '../slice/user.slice';
-import axios from './../utils/axios.ts'
-import { GrLogout } from 'react-icons/gr';
-import { useEffect, useRef, useState } from 'react';
-import { ProductType } from '../pages/home/components/ProductSlider/ProductSlider.tsx';
+import RearBanner from "./RearBanner";
+import { SearchResult } from "./SearchResult";
+import { useSelector } from "react-redux";
+import { RootState, useAppDispatch } from "../store";
+import "./Header.css";
+import { logOut } from "../slice/user.slice";
+import axios from "./../utils/axios.ts";
+import { GrLogout } from "react-icons/gr";
+import { useEffect, useRef, useState } from "react";
+import { ProductType } from "../pages/home/components/ProductSlider/ProductSlider.tsx";
+import toast from "react-hot-toast";
 const Header = () => {
-  const [isOpen, setIsOpen] = useState(false)
-  const [query, setQuery] = useState<string>('')
-  const [searchResult, setSearchResult] = useState<ProductType[]>([])
-  const searchRef = useRef<AbortController>()
-  const location = useLocation()
-  const navigate = useNavigate()
-  const dispatch = useAppDispatch()
-  const handleLogOut = async() => {
+  const cart = useSelector((state: RootState) => state.cart.cart);
+  const [isOpen, setIsOpen] = useState(false);
+  const [query, setQuery] = useState<string>("");
+  const [searchResult, setSearchResult] = useState<ProductType[]>([]);
+  const searchRef = useRef<AbortController>();
+  const location = useLocation();
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const handleLogOut = async () => {
     try {
-      await axios.post('/api/auth/logOut')
-      dispatch(logOut())
-      navigate('/')
+      await axios.post("/api/auth/logOut");
+      dispatch(logOut());
+      navigate("/");
     } catch (error) {
-      toast.error("Có lỗi! Xin Thử lại")
+      toast.error("Có lỗi! Xin Thử lại");
     }
-  }
-  const myInfor = useSelector((state: RootState)=> state.user)
+  };
+  const myInfor = useSelector((state: RootState) => state.user);
   const showNavbar = () => {
-    if(location.pathname !== '/') navigate('/')
-    const navbar = document.getElementById('my-custom-navbar')
-    if(navbar) {
+    if (location.pathname !== "/") navigate("/");
+    const navbar = document.getElementById("my-custom-navbar");
+    if (navbar) {
       window.scrollTo(0, 0);
-      navbar.classList.add('pointer-events-none')
-      navbar.classList.add('animate-wiggle')
+      navbar.classList.add("pointer-events-none");
+      navbar.classList.add("animate-wiggle");
       setTimeout(() => {
-        navbar.classList.remove('animate-wiggle')
-        navbar.classList.remove('pointer-events-none')
-      },1200)
+        navbar.classList.remove("animate-wiggle");
+        navbar.classList.remove("pointer-events-none");
+      }, 1200);
     }
-  }
+  };
   const handleLoginBtn = () => {
-    if(!myInfor.isAuthenticated)
-    // eslint-disable-next-line
-    // @ts-ignore: Unreachable code error
-      document.getElementById('my_modal_login').showModal()
-  }
+    if (!myInfor.isAuthenticated)
+      // eslint-disable-next-line
+      // @ts-ignore: Unreachable code error
+      document.getElementById("my_modal_login").showModal();
+  };
   const handleUserBtn = () => {
-    if(myInfor.isAuthenticated) navigate('/user/my-info')
-  }
+    if (myInfor.isAuthenticated) navigate("/user/my-info");
+  };
   const handleSubmit = (e) => {
-    e.preventDefault()
-    navigate('/search?name='+query)
-  }
+    e.preventDefault();
+    navigate("/search?name=" + query);
+  };
   const handleSearchIPOnChange = async (e) => {
-    setQuery(e.target.value)
-    setSearchResult([])
+    setQuery(e.target.value);
+    setSearchResult([]);
     if (!e.target.value) return;
     if (searchRef.current) searchRef.current.abort();
     searchRef.current = new AbortController();
@@ -73,20 +74,22 @@ const Header = () => {
 
     //trycatch(() =>
     try {
-      const res = await axios.get("/api/product?limit=10&name=" + e.target.value, {
-        signal,
-      });
+      const res = await axios.get(
+        "/api/product?limit=10&name=" + e.target.value,
+        {
+          signal,
+        }
+      );
 
       setSearchResult(res?.data?.filterProduct ?? []);
-      
     } catch (error) {
       //
     }
-  } 
-  useEffect(()=>{
-    setQuery('')
-    setSearchResult([])
-  }, [location])
+  };
+  useEffect(() => {
+    setQuery("");
+    setSearchResult([]);
+  }, [location]);
   return (
     <div className="sticky top-0  bg-[#E30019] z-40 ">
       <div className="m-auto xl:max-w-[1220px] lg:max-w-[1000px] md:max-w-[100%] p-4 flex justify-between items-center">
@@ -104,8 +107,8 @@ const Header = () => {
           <input
             type="text"
             value={query}
-            onFocus={()=>setIsOpen(true)}
-            onBlur={()=>setIsOpen(false)}
+            onFocus={() => setIsOpen(true)}
+            onBlur={() => setIsOpen(false)}
             onChange={handleSearchIPOnChange}
             placeholder="Bạn cần tìm gì?"
             className="py-2 px-2 text-base lg:w-[312px] xl:[200px] font-medium rounded-md focus:outline-double focus:outline-2 focus:outline-red-400 pr-12 "
@@ -116,7 +119,7 @@ const Header = () => {
           >
             <IoIosSearch className="text-xl" />
           </button>
-          <SearchResult isOpen={isOpen} query={query} result={searchResult}/>
+          <SearchResult isOpen={isOpen} query={query} result={searchResult} />
         </form>
         <Link to={"/about"}>
           <div className="hidden md:flex cursor-pointer text-white items-center ml-2">
@@ -145,15 +148,38 @@ const Header = () => {
             </div>
           </div>
         </Link>
-        <div className="hidden md:flex cursor-pointer text-white items-center ml-2">
-          <div className="indicator">
-            <span className="indicator-item text-white bg-yellow-500 indicator-start badge badge-secondary">
-              3
-            </span>
-            <LuShoppingCart className="text-2xl mr-2" />
-          </div>
-          <p className="leading-4 text-white hidden xl:block">Giỏ hàng</p>
-        </div>
+        {myInfor.isAuthenticated && (
+          <Link to={"/user/my-cart"}>
+            <div className="hidden md:flex cursor-pointer text-white items-center ml-2">
+              <div className="indicator">
+                {cart.length !== 0 && (
+                  <span className="indicator-item text-white bg-yellow-500 indicator-start badge badge-secondary">
+                    {cart.length}
+                  </span>
+                )}
+                <LuShoppingCart className="text-2xl mr-2" />
+              </div>
+              <p className="leading-4 text-white hidden xl:block">Giỏ hàng</p>
+            </div>
+          </Link>
+        )}
+
+        {!myInfor.isAuthenticated && (
+          <Link to={"/buy"}>
+            <div className="hidden md:flex cursor-pointer text-white items-center ml-2">
+              <div className="indicator">
+                {cart.length !== 0 && (
+                  <span className="indicator-item text-white bg-yellow-500 indicator-start badge badge-secondary">
+                    {cart.length}
+                  </span>
+                )}
+                <LuShoppingCart className="text-2xl mr-2" />
+              </div>
+              <p className="leading-4 text-white hidden xl:block">Giỏ hàng</p>
+            </div>
+          </Link>
+        )}
+
         <button
           onClick={handleLoginBtn}
           className="btn-user bg-[#BE1529] hover:bg-red-900  py-1.5 px-2 rounded-md hidden md:flex items-center relative"
@@ -203,6 +229,6 @@ const Header = () => {
       <RearBanner />
     </div>
   );
-}
+};
 
-export default Header
+export default Header;

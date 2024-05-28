@@ -24,10 +24,12 @@ import { RootState, useAppDispatch } from "../../store.ts";
 import { getProductDetail } from "../../slice/productDetail.slice.ts";
 import { Link, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { addProductToCart } from "../../slice/cart.slice.ts";
+import toast from "react-hot-toast";
 const returnVietnamese = (item) => {
   if (item === "storage") return "Bộ nhớ";
   if (item === "graphicCard") return "Card đồ hoạ";
-  if (item === "ports") return "Kết nối"
+  if (item === "ports") return "Kết nối";
   if (item === "display") return "Màn hình";
   if (item === "audio") return "Âm thanh";
   if (item === "keyboard") return "Bàn phím";
@@ -64,6 +66,10 @@ const ProductDetail = () => {
   const [swiper2, setSwiper2] = useState<any>(null);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [swiper3, setSwiper3] = useState<any>(null);
+  const addToCart = () => {
+    dispatch(addProductToCart(product?.mainProduct))
+    toast.success("Thêm thành công vào giỏ hàng!")
+  };
 
   const executeScroll = () => location.current.scrollIntoView();
 
@@ -157,7 +163,7 @@ const ProductDetail = () => {
                 d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
               />
             </svg>
-            <Link to={'/'}>
+            <Link to={"/"}>
               <p className="text-red-600">Home</p>
             </Link>
           </li>
@@ -175,8 +181,9 @@ const ProductDetail = () => {
                 d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"
               ></path>
             </svg>
-            <Link to={'/search'}><p className="text-red-600">Products</p></Link>
-            
+            <Link to={"/search"}>
+              <p className="text-red-600">Products</p>
+            </Link>
           </li>
           <li>
             <p>{isLoading ? "Sản phẩm" : product?.mainProduct?.name}</p>
@@ -190,9 +197,11 @@ const ProductDetail = () => {
           ) : (
             <div className="flex flex-col gap-4">
               <div
+                className="relative"
                 onMouseOver={() => setShowNav1(true)}
                 onMouseLeave={() => setShowNav1(false)}
               >
+                <div className="sended-product" style={{}}></div>
                 <Swiper
                   allowTouchMove={false}
                   onSwiper={(s) => {
@@ -328,7 +337,10 @@ const ProductDetail = () => {
                 -{product?.mainProduct?.discount ?? 0}%{" "}
               </div>
             </div>
-            <button className="px-20 py-3 rounded-md hover:opacity-75 bg-[#E30019]">
+            <button
+              onClick={addToCart}
+              className="px-20 py-3 rounded-md hover:opacity-75 bg-[#E30019]"
+            >
               <h4 className="text-white">MUA NGAY</h4>
               <span className="text-white">
                 Giao hàng tận nơi hoặc nhận tại cửa hàng
@@ -550,12 +562,16 @@ const ProductDetail = () => {
               nextEl: ".swiper-button-next",
               prevEl: ".swiper-button-prev",
             }}
-            className="w-full -translate-y-1/3 md:translate-y-0 md:w-1/2 md:mt-10 flex"
+            className="w-full -translate-y-1/3 md:translate-y-0 md:w-1/2 flex"
             id="swiper-3"
           >
             {product?.mainProduct?.imageList.map((item, key) => (
               <SwiperSlide className={``} key={key}>
-                <img src={item} className="aspect-square m-auto" alt="" />
+                <img
+                  src={item}
+                  className="aspect-square min-w-[600px] m-auto"
+                  alt=""
+                />
               </SwiperSlide>
             ))}
           </Swiper>
