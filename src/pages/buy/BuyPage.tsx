@@ -7,6 +7,8 @@ import ProductCart from "../user/components/ProductCart";
 import gearVn from "./../../assets/logo.png";
 import TabInfor from "./components/TabInfor";
 import Example from "./components/Payment";
+import axios from "./../../utils/axios.ts";
+import toast from "react-hot-toast";
 
 const BuyPage = () => {
   const cart = useSelector((state: RootState) => state.cart.cart);
@@ -20,6 +22,15 @@ const BuyPage = () => {
         item.quantity;
     });
     return total;
+  };
+  const handlePaymantZaloBtn = async (id: string) => {
+    try {
+      const res = await axios.post("/api/payment/zalo", { id });
+      if (res?.data?.order_url) window.location.href = res?.data?.order_url;
+      else toast.error("Không thể thanh toán");
+    } catch (error) {
+      //
+    }
   };
   const [tab, setTab] = useState<number>(0);
   return (
@@ -116,6 +127,14 @@ const BuyPage = () => {
                   Tiếp tục mua sắm
                 </button>
               </Link>
+            )}
+            {orderMethod === 1 && (
+              <button
+                onClick={() => handlePaymantZaloBtn(order)}
+                className="btn mx-auto min-w-72 mt-14 bg-red-600 text-white hover:bg-red-500"
+              >
+                Thanh toán
+              </button>
             )}
           </div>
         )}

@@ -50,7 +50,7 @@ const getTime = (timestamp: number) => {
 };
 
 const OrderCard = ({ order }: OrderCardProps) => {
-  const handlePaymantBtn = async (id: string) => {
+  const handlePaymantZaloBtn = async (id: string) => {
     try {
       const res = await axios.post("/api/payment/zalo", { id });
       if (res?.data?.order_url) window.location.href = res?.data?.order_url;
@@ -75,10 +75,10 @@ const OrderCard = ({ order }: OrderCardProps) => {
           </kbd>
           {!order.isPaided && order.status === "pending" && (
             <kbd
-              onClick={() => handlePaymantBtn(order?._id)}
+              onClick={() => handlePaymantZaloBtn(order?._id)}
               className="kbd text-center cursor-pointer hover:animate-none bg-red-500 border-red-500 animate-bounce !font-semibold text-white"
             >
-              Thanh toán
+              ZaloPay
             </kbd>
           )}
         </div>
