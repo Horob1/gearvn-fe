@@ -23,7 +23,7 @@ const MyCartList = () => {
         <>
           <h2 className="text-gray-700">Giỏ hàng của tôi</h2>
           {/* <NotFound></NotFound> */}
-          <ul className="mt-6">
+          <ul className="mt-6 animate-blinker">
             {cart.map((item) => (
               <li key={item.product._id} className="mt-4">
                 <ProductCart cart={item}></ProductCart>

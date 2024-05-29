@@ -13,6 +13,7 @@ import {
   MyOrderList,
   BuyPage,
   AboutPage,
+  PaymentSuccessPage,
 } from "./pages/index.tsx";
 import LogIn from "./components/auth/LogIn.tsx";
 import { useEffect } from "react";
@@ -65,6 +66,7 @@ function App() {
           <Route path="buy" element={<BuyPage />}></Route>
           <Route path="products/:slug" element={<ProductDetail />}></Route>
           <Route path="404" element={<ErrorPage />} />
+          <Route path="payment-success" element={<PaymentSuccessPage/>} />
         </Route>
         <Route path="*" element={<Navigate replace to="/404" />} />
       </Routes>

@@ -139,7 +139,7 @@ const Header = () => {
             </div>
           </div>
         </Link>
-        <Link to={"/user/order"}>
+        <Link to={"/user/my-order"}>
           <div className="hidden md:flex cursor-pointer text-white items-center ml-2">
             <IoClipboard className="text-2xl mr-2" />
             <div className="hidden xl:block">
