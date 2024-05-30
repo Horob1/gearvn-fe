@@ -233,7 +233,7 @@ const SearchPage = () => {
                   ))}
                   <button
                     onClick={() => setBrand("")}
-                    className={`bg-white text-black col-span-2 hover:text-white hover:bg-red-600 border-[1px] hover:border-0 `}
+                    className={`bg-white btn text-black col-span-2 hover:text-white hover:bg-red-600 border-[1px] hover:border-0 `}
                   >
                     TẤT CẢ
                   </button>
