@@ -146,7 +146,7 @@ const ProductDetail = () => {
           {/* <link rel="canonical" href="http://mysite.com/example" /> */}
         </Helmet>
       )}
-      <div className="text-sm breadcrumbs mb-3">
+      <div className="text-sm breadcrumbs mb-3 hidden md:block">
         <ul>
           <li className="text-red-600 cursor-pointer flex">
             <svg
