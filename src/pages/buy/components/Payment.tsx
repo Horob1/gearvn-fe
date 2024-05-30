@@ -6,12 +6,13 @@ const plans = [
     name: "Thanh toán bằng tiền mặt (Khi giao hàng)",
     index: 0,
   },
+
   {
-    name: "Thanh toán bằng momo",
+    name: "Thanh toán bằng zalo pay",
     index: 1,
   },
   {
-    name: "Thanh toán bằng zalo pay",
+    name: "Thanh toán bằng momo",
     index: 2,
   },
 ];

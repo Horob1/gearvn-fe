@@ -66,7 +66,6 @@ const Header = () => {
   };
   const handleSearchIPOnChange = async (e) => {
     setQuery(e.target.value);
-    setSearchResult([]);
     if (!e.target.value) return;
     if (searchRef.current) searchRef.current.abort();
     searchRef.current = new AbortController();

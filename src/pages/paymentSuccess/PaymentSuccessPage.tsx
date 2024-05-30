@@ -1,6 +1,8 @@
 import { Helmet } from "react-helmet-async";
 import { Link, useSearchParams } from "react-router-dom";
 import { AiFillCheckCircle } from "react-icons/ai";
+import Fireworks from "@fireworks-js/react";
+
 
 const PaymentSuccessPage = () => {
   const [params] = useSearchParams();
@@ -22,15 +24,31 @@ const PaymentSuccessPage = () => {
             Thanh toán thành công
           </h1>
           <h4 className="font-medium text-center">
-            Đơn hàng có mã <span className="text-xl text-gray-500">#{params.get("id")}</span> đã được thanh toán thành công!
-            <br/>
-            <span className="text-red-600 text-xl"> GearVN</span> sẽ liên lạc sớm nhất tới quý khách để bàn giao dịch vụ, sản phẩm ❤️
+            Đơn hàng có mã{" "}
+            <span className="text-xl text-gray-500">#{params.get("id")}</span>{" "}
+            đã được thanh toán thành công!
+            <br />
+            <span className="text-red-600 text-xl"> GearVN</span> sẽ liên lạc
+            sớm nhất tới quý khách để bàn giao dịch vụ, sản phẩm ❤️
           </h4>
         </div>
-        <button className="btn btn-outline btn-error m-auto text-lg">
+        <button className="z-50 btn btn-outline btn-error m-auto text-lg">
           <Link to={"/"}>QUAY VỀ TRANG CHỦ</Link>
         </button>
       </div>
+      <Fireworks
+        autostart={true}
+        options={{ opacity: 0.5 }}
+        style={{
+          top: 0,
+          left: 0,
+          zIndex: 20,
+          width: "100%",
+          height: "100%",
+          position: "fixed",
+          background: "transparent",
+        }}
+      />
     </div>
   );
 };
