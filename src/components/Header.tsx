@@ -196,20 +196,20 @@ const Header = () => {
                     onClick={handleUserBtn}
                     className="flex items-center gap-4 hover:underline border-b-2 pb-3"
                   >
-                    <FaRegHandSpock className="text-xl font-bold" />
+                    <FaRegHandSpock className="text-xl font-bold text-black" />
                     <span className="font-bold">
                       Xin chào, {myInfor.user.name}
                     </span>
                   </li>
                   <Link to={"/user/my-cart"}>
                     <li className="flex items-center gap-4 hover:underline py-2">
-                      <LuShoppingCart className="text-xl" />
+                      <LuShoppingCart className="text-xl text-black" />
                       <span>Giỏ hàng của tôi</span>
                     </li>
                   </Link>
                   <Link to={"/user/my-order"}>
                     <li className="flex items-center gap-4 hover:underline py-2">
-                      <IoClipboard className="text-xl" />
+                      <IoClipboard className="text-xl text-black" />
                       <span>Đơn hàng của tôi</span>
                     </li>
                   </Link>
@@ -217,7 +217,7 @@ const Header = () => {
                     onClick={handleLogOut}
                     className="flex items-center gap-4 hover:underline border-t-2 pt-3"
                   >
-                    <GrLogout className="text-xl" />
+                    <GrLogout className="text-xl text-black" />
                     <span>Đăng xuất</span>
                   </li>
                 </ul>

@@ -49,7 +49,7 @@ const ProductCard = ({ isLoading, product }: ProductCardProps) => {
             <div className="p-1.5 bg-[#ECECEC] rounded-md">
               <div className="grid grid-cols-2 gap-2">
                 {product?.techSpecification?.CPU && (
-                  <div className="flex items-center">
+                  <div className="flex items-center text-black">
                     <GoCpu className="mr-2 text-xl" />
                     <Marquee speed={20} pauseOnHover={true}>
                       {product?.techSpecification?.CPU}
@@ -57,7 +57,7 @@ const ProductCard = ({ isLoading, product }: ProductCardProps) => {
                   </div>
                 )}
                 {product?.techSpecification?.graphicCard && (
-                  <div className="flex items-center">
+                  <div className="flex items-center text-black">
                     <PiGraphicsCardBold className="mr-2 text-xl" />
                     <Marquee speed={20} pauseOnHover={true}>
                       {product?.techSpecification?.graphicCard}
@@ -65,7 +65,7 @@ const ProductCard = ({ isLoading, product }: ProductCardProps) => {
                   </div>
                 )}
                 {product?.techSpecification?.RAM && (
-                  <div className="flex items-center">
+                  <div className="flex items-center text-black">
                     <FaMemory className="mr-2 text-xl" />
                     <Marquee speed={20} pauseOnHover={true}>
                       {product?.techSpecification?.RAM}
@@ -73,7 +73,7 @@ const ProductCard = ({ isLoading, product }: ProductCardProps) => {
                   </div>
                 )}
                 {product?.techSpecification?.storage && (
-                  <div className="flex items-center">
+                  <div className="flex items-center text-black">
                     <BiSolidMemoryCard className="mr-2 text-xl" />
                     <Marquee speed={20} pauseOnHover={true}>
                       {product?.techSpecification?.storage}
@@ -83,8 +83,8 @@ const ProductCard = ({ isLoading, product }: ProductCardProps) => {
                 {(product?.techSpecification?.dimensions ||
                   product?.techSpecification?.display) && (
                   <div className="flex items-center col-span-2">
-                    <SlScreenDesktop className="mr-2 text-xl" />
-                    <Marquee speed={20} pauseOnHover={true}>
+                    <SlScreenDesktop className="mr-2 text-xl text-black" />
+                    <Marquee speed={20} className="text-black" pauseOnHover={true}>
                       {`${product?.techSpecification?.dimensions ?? ""} ${
                         product?.techSpecification?.display ?? ""
                       }`}

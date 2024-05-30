@@ -409,7 +409,7 @@ const ProductDetail = () => {
                       {Object.keys(
                         product?.mainProduct.techSpecification ?? {}
                       ).map((item) => (
-                        <tr key={item} className="grid grid-cols-5 w-full">
+                        <tr key={item} className="grid grid-cols-5 w-full text-black  ">
                           <td className="bg-gray-200 p-2 w-full text-xl font-bold text-wrap leading-6">
                             {returnVietnamese(item)}
                           </td>
