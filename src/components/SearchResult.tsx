@@ -14,7 +14,7 @@ export const SearchResult = ({
 }: SearchResultProps) => {
 
   return (
-    <div className={`search-result ${result.length === 0 ? "hidden" : ""}`}>
+    <div className={`search-result ${result.length === 0  || !isOpen ? "hidden" : ""}`}>
       <div className="px-4 pt-2 bg-white shadow-md rounded-md absolute w-[130%] max-h-[300px] top-[110%] left-0 overflow-y-auto">
         {result && isOpen &&
           result.map((item) => (
