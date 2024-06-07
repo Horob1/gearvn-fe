@@ -64,6 +64,15 @@ const Header = () => {
     e.preventDefault();
     navigate("/search?name=" + query);
   };
+  const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
+    if (
+      event.relatedTarget &&
+      event.relatedTarget.id === "search-result-item"
+    ) {
+      return;
+    }
+    setIsOpen(false);
+  };
   const handleSearchIPOnChange = async (e) => {
     setQuery(e.target.value);
     if (!e.target.value) return;
@@ -107,7 +116,7 @@ const Header = () => {
             type="text"
             value={query}
             onFocus={() => setIsOpen(true)}
-            onBlur={() => setIsOpen(false)}
+            onBlur={handleBlur}
             onChange={handleSearchIPOnChange}
             placeholder="Bạn cần tìm gì?"
             className="py-2 px-2 text-base lg:w-[312px] xl:[200px] font-medium rounded-md focus:outline-double focus:outline-2 focus:outline-red-400 pr-12 "

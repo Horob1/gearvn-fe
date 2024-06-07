@@ -1,4 +1,4 @@
-import { Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import img from "../assets/download.gif";
 import "./searchResult.css";
 import { ProductType } from "../pages/home/components/ProductSlider/ProductSlider";
@@ -7,18 +7,23 @@ type SearchResultProps = {
   query: string;
   isOpen: boolean;
 };
-export const SearchResult = ({
-  isOpen,
-  result,
-  query,
-}: SearchResultProps) => {
-
+export const SearchResult = ({ isOpen, result, query }: SearchResultProps) => {
   return (
-    <div className={`search-result ${result.length === 0  || !isOpen ? "hidden" : ""}`}>
+    <div
+      id="search-result-item"
+      className={`search-result ${
+        result.length === 0 || !isOpen ? "hidden" : ""
+      }`}
+    >
       <div className="px-4 pt-2 bg-white shadow-md rounded-md absolute w-[130%] max-h-[300px] top-[110%] left-0 overflow-y-auto">
-        {result && isOpen &&
+        {result &&
+          isOpen &&
           result.map((item) => (
-            <Link to={'/products/'+item.slug} key={item._id}>
+            <Link
+              to={"/products/" + item.slug}
+              key={item._id}
+              onMouseDown={(e) => e.preventDefault()}
+            >
               <div className="flex justify-between items-center pb-2 border-b-2">
                 <div className="pr-5 pt-2">
                   <span className="line-clamp-1 text-sm">{item?.name}</span>
@@ -44,8 +49,9 @@ export const SearchResult = ({
             </Link>
           ))}
 
-        <div className="flex">
-          <Link to={'/search?name='+query}
+        <div className="flex" onMouseDown={(e) => e.preventDefault()}>
+          <Link
+            to={"/search?name=" + query}
             className="text-black m-auto px-4 py-3 cursor-pointer hover:text-red-600"
           >
             Hiển thị thêm

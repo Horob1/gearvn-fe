@@ -67,8 +67,8 @@ const ProductDetail = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [swiper3, setSwiper3] = useState<any>(null);
   const addToCart = () => {
-    dispatch(addProductToCart(product?.mainProduct))
-    toast.success("Thêm thành công vào giỏ hàng!")
+    dispatch(addProductToCart(product?.mainProduct));
+    toast.success("Thêm thành công vào giỏ hàng!");
   };
 
   const executeScroll = () => location.current.scrollIntoView();
@@ -409,7 +409,10 @@ const ProductDetail = () => {
                       {Object.keys(
                         product?.mainProduct.techSpecification ?? {}
                       ).map((item) => (
-                        <tr key={item} className="grid grid-cols-5 w-full text-black  ">
+                        <tr
+                          key={item}
+                          className="grid grid-cols-5 w-full text-black  "
+                        >
                           <td className="bg-gray-200 p-2 w-full text-xl font-bold text-wrap leading-6">
                             {returnVietnamese(item)}
                           </td>
@@ -425,19 +428,12 @@ const ProductDetail = () => {
               <div className="mt-8">
                 <h2 className="font-extrabold">Đánh giá chi tiết</h2>
                 <div className="py-4">
-                  <article>
-                    <p>
-                      {" "}
-                      Chưa làm
-                      {/* Laptop gaming Acer Aspire 5 A515 58GM 53PZ là chiếc laptop
-                    chỉ có mức giá tầm trung ngang một chiếc laptop văn phòng
-                    nhưng bên trong lại sở hữu cấu hình mạnh mẽ đến kinh ngạc.
-                    Bộ vi xử lý Intel thế hệ thứ 13 mới nhất kết hợp card đồ họa
-                    RTX 2000 series chắc chắn sẽ mang đến cho bạn những trải
-                    nghiệm sử dụng và chiến game giải trí tuyệt vời. Cùng tìm
-                    hiểu ngay về mẫu laptop Acer này ngay dưới đây. */}
-                    </p>
-                  </article>
+                  <article
+                    id="information"
+                    dangerouslySetInnerHTML={{
+                      __html: product?.mainProduct?.information ?? "",
+                    }}
+                  ></article>
                 </div>
               </div>
             </div>

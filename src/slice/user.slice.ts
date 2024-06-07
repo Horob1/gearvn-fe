@@ -45,7 +45,7 @@ const userSlice = createSlice({
     builder.addCase(getMe.fulfilled, (state, action) => {
       // Add user to the state array
       state.user.name = action.payload?.user?.name || "";
-      state.user._id = action.payload?.user._id || "";
+      state.user._id = action.payload?.user?._id || "";
       state.user.email = action.payload?.user?.email || "";
       state.user.phone = action.payload?.user?.phone || "";
       state.isAuthenticated = true;
