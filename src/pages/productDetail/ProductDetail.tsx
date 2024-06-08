@@ -408,19 +408,22 @@ const ProductDetail = () => {
                       {/* row 1 */}
                       {Object.keys(
                         product?.mainProduct.techSpecification ?? {}
-                      ).map((item) => (
-                        <tr
-                          key={item}
-                          className="grid grid-cols-5 w-full text-black  "
-                        >
-                          <td className="bg-gray-200 p-2 w-full text-xl font-bold text-wrap leading-6">
-                            {returnVietnamese(item)}
-                          </td>
-                          <td className="col-span-4 p-2 text-lg leading-6">
-                            {product?.mainProduct.techSpecification[item]}
-                          </td>
-                        </tr>
-                      ))}
+                      ).map(
+                        (item) =>
+                          product?.mainProduct?.techSpecification?.[item] && (
+                            <tr
+                              key={item}
+                              className="grid grid-cols-5 w-full text-black  "
+                            >
+                              <td className="bg-gray-200 p-2 w-full text-xl font-bold text-wrap leading-6">
+                                {returnVietnamese(item)}
+                              </td>
+                              <td className="col-span-4 p-2 text-lg leading-6">
+                                {product?.mainProduct.techSpecification[item]}
+                              </td>
+                            </tr>
+                          )
+                      )}
                     </tbody>
                   </table>
                 </div>

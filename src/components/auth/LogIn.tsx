@@ -32,7 +32,7 @@ const LogIn = () => {
             ✕
           </button>
         </form>
-        {!tab ? <LoginTab></LoginTab> : <RegisterTab></RegisterTab>}
+        {!tab ? <LoginTab></LoginTab> : <RegisterTab setTab={setTab}></RegisterTab>}
         <form method="dialog">
           {/* if there is a button in form, it will close the modal */}
           <div className="flex justify-center items-center mt-4">
