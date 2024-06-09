@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import {
-  DistrictCombobox,
-  ProvinceCombobox,
-  WardCombobox,
-} from "./AutoCompleteComboBox";
-import useProvinces from "../../../hook/Provinces.tsx";
-import useDistrict from "../../../hook/District.tsx";
-import useWard from "../../../hook/Ward.tsx";
+// import {
+//   DistrictCombobox,
+//   ProvinceCombobox,
+//   WardCombobox,
+// } from "./AutoCompleteComboBox";
+// import useProvinces from "../../../hook/Provinces.tsx";
+// import useDistrict from "../../../hook/District.tsx";
+// import useWard from "../../../hook/Ward.tsx";
 import { Cart, clearCart } from "../../../slice/cart.slice";
 type TabInforProps = {
   cart: Cart[];
@@ -21,14 +21,14 @@ import { useSelector } from "react-redux";
 import { RootState, useAppDispatch } from "../../../store.ts";
 const TabInfor = ({ cart, totalAmount, setTab, setOrder }: TabInforProps) => {
   const userInfor = useSelector((state: RootState) => state.user);
-  const { provinces, selectedProvince, setSelectedProvince } = useProvinces();
-  const { districts, currentDistrict, setCurrentDistrict } = useDistrict({
-    id: selectedProvince.province_id,
-  });
+  // const { provinces, selectedProvince, setSelectedProvince } = useProvinces();
+  // const { districts, currentDistrict, setCurrentDistrict } = useDistrict({
+  //   id: selectedProvince.province_id,
+  // });
   const dispatch = useAppDispatch();
-  const { wards, currentWard, setCurrentWard } = useWard({
-    id: currentDistrict.district_id,
-  });
+  // const { wards, currentWard, setCurrentWard } = useWard({
+  //   id: currentDistrict.district_id,
+  // });
 
   useEffect(() => {
     if (userInfor.isAuthenticated)
@@ -62,24 +62,25 @@ const TabInfor = ({ cart, totalAmount, setTab, setOrder }: TabInforProps) => {
         formData.name &&
         formData.email &&
         formData.phone &&
-        formData.address &&
-        selectedProvince.province_name &&
-        currentDistrict.district_name &&
-        currentWard.ward_name
+        formData.address
+        // &&
+        // selectedProvince.province_name &&
+        // currentDistrict.district_name &&
+        // currentWard.ward_name
       ) {
         const body = {
           userId: "",
           name: formData.name,
           email: formData.email,
           phone: formData.phone,
-          address:
-            formData.address +
-            ", " +
-            currentWard.ward_name +
-            ", " +
-            currentDistrict.district_name +
-            ", " +
-            selectedProvince.province_name,
+          address: formData.address,
+          // +
+          // ", " +
+          // currentWard.ward_name +
+          // ", " +
+          // currentDistrict.district_name +
+          // ", " +
+          // selectedProvince.province_name,
           cart: cart,
           totalAmount: totalAmount,
         };
@@ -138,7 +139,7 @@ const TabInfor = ({ cart, totalAmount, setTab, setOrder }: TabInforProps) => {
                 className="w-full px-3 py-2 border border-gray-300 rounded-md"
               />
             </div>
-            <div className="mb-4 flex justify-between">
+            {/* <div className="mb-4 flex justify-between">
               <div>
                 <label className="block text-gray-700">Tỉnh/Thành phố</label>
                 <ProvinceCombobox
@@ -157,7 +158,7 @@ const TabInfor = ({ cart, totalAmount, setTab, setOrder }: TabInforProps) => {
             <div className="mb-4">
               <label className="block text-gray-700">Phường/Xã</label>
               <WardCombobox wards={wards} setCurrentWard={setCurrentWard} />
-            </div>
+            </div> */}
             <div className="mb-4">
               <label className="block text-gray-700">Địa Chỉ</label>
               <input
