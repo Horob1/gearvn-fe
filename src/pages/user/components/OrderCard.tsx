@@ -97,9 +97,9 @@ const OrderCard = ({ order }: OrderCardProps) => {
           </div>
           <div className="col-span-3 mt-4 flex flex-col justify-between gap-3">
             <h6 className="text-base line-clamp-2">
-              Laptop ASUS Vivobook S 16 OLED S5606MA MX051W
+              {cart?.detail?.name ?? "Unknown"}
             </h6>
-            <span>Số lượng: 2</span>
+            <span>Số lượng: {cart?.quantity ?? "1"}</span>
           </div>
         </div>
       ))}
