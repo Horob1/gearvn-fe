@@ -231,7 +231,7 @@ const ProductDetail = () => {
                     >
                       <img
                         src={item}
-                        className="cursor-pointer aspect-square w-full"
+                        className="cursor-pointer w-full"
                         alt=""
                       />
                     </SwiperSlide>
