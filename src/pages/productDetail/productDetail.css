@@ -1,0 +1,26 @@
+article p {
+  font-size: 18px;
+  line-height: 1.5rem;
+  font-weight: 400;
+}
+article img {
+  width: full;
+}
+
+.article-container:after {
+  content: "";
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  height: 50%;
+  bottom: 0px;
+  background: linear-gradient(
+    180deg,
+    rgba(139, 167, 32, 0) 0%,
+    rgba(255, 255, 255, 1) 100%
+  );
+  pointer-events: none;
+}
+article p img {
+  width: 100%;
+}

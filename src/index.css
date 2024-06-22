@@ -2,6 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
+html {
+  scroll-behavior: smooth;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+  transition: height 0.5s ease;
+}
+
 h1 {
   @apply text-3xl font-bold;
 }
@@ -30,9 +43,36 @@ p {
   @apply text-sm font-medium leading-6;
 }
 
-span { 
+span {
   @apply text-sm font-medium leading-6;
 }
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+span,
+p {
+  color: #000000;
+}
+
+input {
+  background: #ffffff;
+  color: #000000;
+}
+
+svg {
+  
+}
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearence: none;
+}
+
 /* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
