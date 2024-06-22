@@ -68,9 +68,8 @@ export const ConversationBox = ({
             </div>
           )
         )}
+        <div ref={lastMessage}></div>
       </div>
-
-      <div ref={lastMessage}></div>
     </div>
   );
 };
