@@ -32,6 +32,15 @@ const BuyPage = () => {
       //
     }
   };
+  const handlePaymantMomoBtn = async (id: string) => {
+    try {
+      const res = await axios.post("/api/payment/momo", { id });
+      if (res?.data?.payUrl) window.location.href = res?.data?.payUrl;
+      else toast.error("Không thể thanh toán");
+    } catch (error) {
+      //
+    }
+  };
   const [tab, setTab] = useState<number>(0);
   return (
     <div className="m-auto xl:max-w-[1000px] lg:max-w-[800px] md:max-w-[600] rounded-md my-6 flex flex-col gap-5 p-4 bg-white">
@@ -131,6 +140,14 @@ const BuyPage = () => {
             {orderMethod === 1 && (
               <button
                 onClick={() => handlePaymantZaloBtn(order)}
+                className="btn mx-auto min-w-72 mt-14 bg-red-600 text-white hover:bg-red-500"
+              >
+                Thanh toán
+              </button>
+            )}
+            {orderMethod === 2 && (
+              <button
+                onClick={() => handlePaymantMomoBtn(order)}
                 className="btn mx-auto min-w-72 mt-14 bg-red-600 text-white hover:bg-red-500"
               >
                 Thanh toán

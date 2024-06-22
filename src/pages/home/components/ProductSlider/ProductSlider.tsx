@@ -1,17 +1,18 @@
-import ProductCard from "./ProductCard"
-import { Swiper, SwiperSlide } from "swiper/react"
-import { FreeMode, Navigation, Autoplay} from "swiper/modules"
+import ProductCard from "./ProductCard";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { FreeMode, Navigation, Autoplay } from "swiper/modules";
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa6";
-import 'swiper/css'
-import 'swiper/css/free-mode'
-import './card.css'
+import "swiper/css";
+import "swiper/css/free-mode";
+import "./card.css";
 import { useEffect, useState } from "react";
 
 import axios from "./../../../../utils/axios.ts";
+import { Rate } from "../../../productDetail/RatingList.tsx";
 // import 'swiper/css/navigation'
 type ProductSliderProps = {
-  type: string
-}
+  type: string;
+};
 export type ProductType = {
   _id: string;
   deviceCode: string;
@@ -20,26 +21,27 @@ export type ProductType = {
   stock: number;
   information: null;
   techSpecification: {
-    CPU: string | null,
-    RAM: string | null,
-    storage: string | null,
-    graphicCard: string | null,
-    display: string | null,
-    ports: string | null,
-    audio: string | null,
-    keyboard: string | null,
-    cardReader: string | null,
-    wifiStandard: string | null,
-    bluetooth: string | null,
-    webcam: string | null,
-    operatingSystem: string | null,
-    battery: string | null,
-    weight: string | null,
-    color: string | null,
-    dimensions: string | null,
-  },
-  rateQuan: number,
-  rateSum: number,
+    CPU: string | null;
+    RAM: string | null;
+    storage: string | null;
+    graphicCard: string | null;
+    display: string | null;
+    ports: string | null;
+    audio: string | null;
+    keyboard: string | null;
+    cardReader: string | null;
+    wifiStandard: string | null;
+    bluetooth: string | null;
+    webcam: string | null;
+    operatingSystem: string | null;
+    battery: string | null;
+    weight: string | null;
+    color: string | null;
+    dimensions: string | null;
+  };
+  rateQuan: number;
+  rateList: Rate[];
+  rateSum: number;
   brand: string;
   discount: number;
   typeDevice: string;
@@ -49,12 +51,12 @@ export type ProductType = {
   slug: string;
   createAt: number;
   updateAt: number | null;
-  imageList: string[],
+  imageList: string[];
   _destroy: boolean;
 };
 
-const ProductSlider = ({type} : ProductSliderProps) => {
-  const [products, setProducts] = useState<ProductType[]>([])
+const ProductSlider = ({ type }: ProductSliderProps) => {
+  const [products, setProducts] = useState<ProductType[]>([]);
   useEffect(() => {
     const controller = new AbortController();
     const signal = controller.signal;
@@ -119,7 +121,7 @@ const ProductSlider = ({type} : ProductSliderProps) => {
       {products?.length === 0 &&
         [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((item) => (
           <SwiperSlide key={item}>
-            <ProductCard isLoading={true} product={null}/>
+            <ProductCard isLoading={true} product={null} />
           </SwiperSlide>
         ))}
       {products &&
@@ -133,6 +135,6 @@ const ProductSlider = ({type} : ProductSliderProps) => {
       </button>
     </Swiper>
   );
-}
+};
 
-export default ProductSlider
+export default ProductSlider;

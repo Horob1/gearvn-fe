@@ -59,6 +59,15 @@ const OrderCard = ({ order }: OrderCardProps) => {
       //
     }
   };
+  const handlePaymantMomoBtn = async (id: string) => {
+    try {
+      const res = await axios.post("/api/payment/momo", { id });
+      if (res?.data?.payUrl) window.location.href = res?.data?.payUrl;
+      else toast.error("Không thể thanh toán");
+    } catch (error) {
+      //
+    }
+  };
   return (
     <div className="px-2 pb-2 mt-4 rounded border-2">
       <div className="flex justify-between items-center py-3 border-b-[1px]">
@@ -74,12 +83,20 @@ const OrderCard = ({ order }: OrderCardProps) => {
             ⌘ {getStatusVie(order?.status)}
           </kbd>
           {!order.isPaided && order.status === "pending" && (
-            <kbd
-              onClick={() => handlePaymantZaloBtn(order?._id)}
-              className="kbd text-center cursor-pointer hover:animate-none bg-red-500 border-red-500 animate-bounce !font-semibold text-white"
-            >
-              ZaloPay
-            </kbd>
+            <>
+              <kbd
+                onClick={() => handlePaymantZaloBtn(order?._id)}
+                className="kbd text-center cursor-pointer hover:animate-none bg-red-500 border-red-500 animate-bounce !font-semibold text-white"
+              >
+                ZaloPay
+              </kbd>
+              <kbd
+                onClick={() => handlePaymantMomoBtn(order?._id)}
+                className="kbd text-center cursor-pointer hover:animate-none bg-red-500 border-red-500 animate-bounce !font-semibold text-white"
+              >
+                MomoPay
+              </kbd>
+            </>
           )}
         </div>
       </div>

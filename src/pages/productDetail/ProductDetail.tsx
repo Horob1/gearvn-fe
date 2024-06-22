@@ -21,33 +21,20 @@ import robot from "./../../assets/robot.png";
 import { Helmet } from "react-helmet-async";
 import RatingList from "./RatingList.tsx";
 import { RootState, useAppDispatch } from "../../store.ts";
-import { getProductDetail } from "../../slice/productDetail.slice.ts";
+import { addRate, getProductDetail } from "../../slice/productDetail.slice.ts";
 import { Link, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { addProductToCart } from "../../slice/cart.slice.ts";
+import axios from "./../../utils/axios.ts";
 import toast from "react-hot-toast";
-const returnVietnamese = (item) => {
-  if (item === "storage") return "Bộ nhớ";
-  if (item === "graphicCard") return "Card đồ hoạ";
-  if (item === "ports") return "Kết nối";
-  if (item === "display") return "Màn hình";
-  if (item === "audio") return "Âm thanh";
-  if (item === "keyboard") return "Bàn phím";
-  if (item === "cardReader") return "Đầu đọc thẻ";
-  if (item === "wifiStandard") return "Chuẩn wifi";
-  if (item === "bluetooth") return "Bluetooth";
-  if (item === "webcam") return "Webcam";
-  if (item === "operatingSystem") return "Hệ điều hành";
-  if (item === "battery") return "Nguồn";
-  if (item === "weight") return "Trọng lượng";
-  if (item === "color") return "Màu sắc";
-  if (item === "dimensions") return "Kích thước";
-  return item;
-};
 
 const ProductDetail = () => {
+  const showMoreRef = useRef<HTMLDivElement>(document.createElement("div"));
   const dispatch = useAppDispatch();
   const params = useParams();
+  const isAuthenticated = useSelector(
+    (state: RootState) => state.user.isAuthenticated
+  );
   const product = useSelector(
     (state: RootState) => state.productDetail.product
   );
@@ -56,7 +43,9 @@ const ProductDetail = () => {
   );
   const location = useRef<HTMLDivElement>(document.createElement("div"));
   const [index, setIndex] = useState(0);
-  const [score, setScore] = useState(1);
+  const [score, setScore] = useState(4);
+  const [disabled, setDisabled] = useState<boolean>(false);
+  const [rateComment, setRateComment] = useState<string>("");
   const [showArticle, setShowArticle] = useState(false);
   const [showNav1, setShowNav1] = useState(false);
   const [showNav2, setShowNav2] = useState(false);
@@ -69,6 +58,24 @@ const ProductDetail = () => {
   const addToCart = () => {
     dispatch(addProductToCart(product?.mainProduct));
     toast.success("Thêm thành công vào giỏ hàng!");
+  };
+  const returnVietnamese = (item) => {
+    if (item === "storage") return "Bộ nhớ";
+    if (item === "graphicCard") return "Card đồ hoạ";
+    if (item === "ports") return "Kết nối";
+    if (item === "display") return "Màn hình";
+    if (item === "audio") return "Âm thanh";
+    if (item === "keyboard") return "Bàn phím";
+    if (item === "cardReader") return "Đầu đọc thẻ";
+    if (item === "wifiStandard") return "Chuẩn wifi";
+    if (item === "bluetooth") return "Bluetooth";
+    if (item === "webcam") return "Webcam";
+    if (item === "operatingSystem") return "Hệ điều hành";
+    if (item === "battery") return "Nguồn";
+    if (item === "weight") return "Trọng lượng";
+    if (item === "color") return "Màu sắc";
+    if (item === "dimensions") return "Kích thước";
+    return item;
   };
 
   const executeScroll = () => location.current.scrollIntoView();
@@ -129,6 +136,29 @@ const ProductDetail = () => {
       action.abort();
     };
   }, [dispatch, params]);
+  const handleCreateRateBtn = async (e) => {
+    e.preventDefault();
+    setDisabled(true);
+    try {
+      if (isAuthenticated) {
+        if (score && rateComment) {
+          const res = await axios.post(
+            "/api/product/rate/" + product?.mainProduct?._id,
+            {
+              rate: score + 1,
+              comment: rateComment,
+            }
+          );
+          toast.success("Đánh giá thành công!");
+          dispatch(addRate(res?.data));
+        } else toast.error("Điền chưa đủ thông tin!");
+      } else toast.error("Bạn phải đăng nhập để đánh giá!");
+    } catch (error) {
+      //
+      toast.error("Có lỗi xin thử lại sau!");
+    }
+    setDisabled(false);
+  };
   return (
     <div className="m-auto xl:max-w-[1220px] lg:max-w-[1000px] md:max-w-[100%]p-4">
       {isLoading ? (
@@ -395,6 +425,7 @@ const ProductDetail = () => {
         ) : (
           <div className="lg:col-span-7 py-4 px-5 bg-white rounded-md h-fit">
             <div
+              ref={showMoreRef}
               className={`${
                 !showArticle ? "article-container h-[662px]" : ""
               } overflow-hidden relative`}
@@ -443,6 +474,7 @@ const ProductDetail = () => {
             <button
               onClick={() => {
                 setShowArticle(!showArticle);
+                if (showMoreRef.current) showMoreRef.current?.scrollIntoView();
               }}
               className="w-full py-4 text-red-600 font-medium text-lg flex justify-center items-center"
             >
@@ -487,13 +519,18 @@ const ProductDetail = () => {
             Đánh giá & Nhận xét {product?.mainProduct?.name}
           </h2>
 
-          <RatingList></RatingList>
+          <RatingList
+            rateList={product?.mainProduct?.rateList ?? []}
+          ></RatingList>
 
-          <form className="flex flex-col gap-3 mt-10">
+          <form
+            onSubmit={handleCreateRateBtn}
+            className="flex flex-col gap-3 mt-10"
+          >
             <div className="flex gap-10 justify-center">
               <img
                 src={robot}
-                className="w-56 h-56 rounded-full aspect-square"
+                className="w-56 h-56 rounded-full aspect-square hidden md:block"
                 alt=""
               />
               <div className="flex flex-col gap-3">
@@ -518,12 +555,17 @@ const ProductDetail = () => {
                 </h4>
                 <input
                   type="text"
+                  value={rateComment}
+                  onChange={(e) => setRateComment(e.target.value)}
                   placeholder="Nhập nội dung ở đây"
-                  className="input m-auto input-bordered input-error w-full max-w-xs"
+                  className="input m-auto w-80 input-bordered input-error"
                 />
               </div>
             </div>
-            <button className="btn btn-outline w-[360px] m-auto mt-4 btn-error">
+            <button
+              disabled={disabled}
+              className="btn btn-outline w-[360px] m-auto mt-4 btn-error"
+            >
               Gửi đánh giá
             </button>
           </form>

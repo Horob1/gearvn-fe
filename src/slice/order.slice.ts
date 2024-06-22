@@ -5,14 +5,17 @@ import { ProductType } from "../pages/home/components/ProductSlider/ProductSlide
 type ProductOrder = {
   detail: ProductType;
   quantity: number;
-}
+};
 
-export const getMyOrder = createAsyncThunk("user/getMyOrder", async (_, thunkAPI) => {
-  const response = await axios.get("/api/user/my-order", {
-    signal: thunkAPI.signal,
-  });
-  return response.data;
-});
+export const getMyOrder = createAsyncThunk(
+  "user/getMyOrder",
+  async (_, thunkAPI) => {
+    const response = await axios.get("/api/user/my-order", {
+      signal: thunkAPI.signal,
+    });
+    return response.data;
+  }
+);
 
 export type OrderType = {
   _id: string;
@@ -42,7 +45,7 @@ const orderSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(getMyOrder.fulfilled, (state, action) => {
-      state.orders = action.payload?.resOrders ?? [];
+      state.orders = action.payload?.resOrders.reverse() ?? [];
     });
 
     builder.addCase(getMyOrder.rejected, (state) => {
@@ -50,7 +53,5 @@ const orderSlice = createSlice({
     });
   },
 });
-
-
 
 export default orderSlice.reducer;
