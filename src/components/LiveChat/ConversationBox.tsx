@@ -32,6 +32,10 @@ export const ConversationBox = ({
       if (message.position === "end") setIsUnSeen(true);
       setMessages((prevMessages) => [...prevMessages, message]);
     });
+
+    return () => {
+      socket.off("receiveMessage");
+    };
   }, [socket, setIsUnSeen]);
 
   return (
