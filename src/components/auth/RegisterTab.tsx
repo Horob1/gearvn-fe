@@ -8,6 +8,7 @@ type RegisterTabProps = {
 };
 
 const RegisterTab = ({ setTab }: RegisterTabProps) => {
+  const [disable, setDisable] = useState(false);
   const [registerForm, setRegisterForm] = useState({
     name: "",
     email: "",
@@ -21,6 +22,7 @@ const RegisterTab = ({ setTab }: RegisterTabProps) => {
     });
   };
   const handleSubmit = async (event) => {
+    setDisable(true);
     event.preventDefault();
     if (registerForm.email && registerForm.password && registerForm.name) {
       //
@@ -32,6 +34,7 @@ const RegisterTab = ({ setTab }: RegisterTabProps) => {
         toast.error("Thông tin không hợp lệ!");
       }
     } else toast.error("Nhập chưa đủ thông tin");
+    setDisable(false);
   };
   return (
     <form onSubmit={handleSubmit}>
@@ -106,6 +109,7 @@ const RegisterTab = ({ setTab }: RegisterTabProps) => {
         <button
           type="submit"
           value="login"
+          disabled={disable}
           id="login"
           className="mt-6 w-full shadow-xl bg-red-600 hover:opacity-50 text-indigo-100 py-2 rounded-md text-lg tracking-wide transition duration-1000"
         >

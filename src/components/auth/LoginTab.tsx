@@ -7,6 +7,7 @@ import { getMe } from "../../slice/user.slice.ts";
 import toast from "react-hot-toast";
 const LoginTab = () => {
   const dispatch = useAppDispatch();
+  const [disable, setDisable] = useState(false);
   const [formData, setFormData] = useState<{ email: string; password: string }>(
     {
       email: "",
@@ -14,8 +15,8 @@ const LoginTab = () => {
     }
   );
 
-
   const handleSubmit = async (e) => {
+    setDisable(true);
     e.preventDefault();
     try {
       if (formData.email !== "" && formData.password !== "") {
@@ -33,6 +34,7 @@ const LoginTab = () => {
         toast.error("Sai mật khẩu!");
       else toast.error("Có lỗi xảy ra!");
     }
+    setDisable(false);
   };
   return (
     <form onSubmit={(e) => handleSubmit(e)}>
@@ -99,6 +101,7 @@ const LoginTab = () => {
         {/* Remember Me checkbox */}
         <button
           type="submit"
+          disabled={disable}
           value="login"
           id="login"
           className="mt-6 w-full shadow-xl bg-red-600 hover:opacity-50 text-indigo-100 py-2 rounded-md text-lg tracking-wide transition duration-1000"
