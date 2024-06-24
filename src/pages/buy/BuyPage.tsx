@@ -25,6 +25,7 @@ const BuyPage = () => {
   };
   const handlePaymantZaloBtn = async (id: string) => {
     try {
+      if (!id) return;
       const res = await axios.post("/api/payment/zalo", { id });
       if (res?.data?.order_url) window.location.href = res?.data?.order_url;
       else toast.error("Không thể thanh toán");
@@ -34,6 +35,7 @@ const BuyPage = () => {
   };
   const handlePaymantMomoBtn = async (id: string) => {
     try {
+      if (!id) return;
       const res = await axios.post("/api/payment/momo", { id });
       if (res?.data?.payUrl) window.location.href = res?.data?.payUrl;
       else toast.error("Không thể thanh toán");
@@ -66,7 +68,7 @@ const BuyPage = () => {
           </li>
           <li
             onClick={() => {
-              if (tab === 2) return;
+              if (tab === 2 || cart.length === 0) return;
               setTab(1);
             }}
             className={`step cursor-pointer ${tab >= 1 ? "step-error" : ""}`}

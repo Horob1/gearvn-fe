@@ -62,7 +62,9 @@ const TabInfor = ({ cart, totalAmount, setTab, setOrder }: TabInforProps) => {
         formData.name &&
         formData.email &&
         formData.phone &&
-        formData.address
+        formData.address &&
+        cart &&
+        cart.length > 0
         // &&
         // selectedProvince.province_name &&
         // currentDistrict.district_name &&
@@ -84,6 +86,7 @@ const TabInfor = ({ cart, totalAmount, setTab, setOrder }: TabInforProps) => {
           cart: cart,
           totalAmount: totalAmount,
         };
+
         if (userInfor.isAuthenticated && userInfor?.user?._id)
           body.userId = userInfor.user?._id;
         const res = await axios.post("/api/order", body);
@@ -98,6 +101,7 @@ const TabInfor = ({ cart, totalAmount, setTab, setOrder }: TabInforProps) => {
       }
     } catch (error) {
       // TODO: toast error
+      toast.error("Có lỗi xin thử lại sau!");
     }
   };
   return (
