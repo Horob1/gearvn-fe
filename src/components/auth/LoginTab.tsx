@@ -51,24 +51,20 @@ const LoginTab = () => {
 
     if (popup) {
       console.log("Google OAuth popup window opened");
-      window.addEventListener(
-        "message",
-        async (event) => {
-          if (event?.data?.accessToken && event?.data?.refreshToken)
-            try {
-              // Gửi token đến server của bạn để xác thực và lấy thông tin người dùng
-              await axios.post("/api/auth/google-login", {
-                accessToken: event?.data?.accessToken,
-                refreshToken: event?.data?.refreshToken,
-              });
+      window.addEventListener("message", async (event) => {
+        if (event?.data?.accessToken && event?.data?.refreshToken)
+          try {
+            // Gửi token đến server của bạn để xác thực và lấy thông tin người dùng
+            await axios.post("/api/auth/google-login", {
+              accessToken: event?.data?.accessToken,
+              refreshToken: event?.data?.refreshToken,
+            });
 
-              dispatch(getMe());
-            } catch (error) {
-              toast.error("Có lỗi xảy ra!");
-            }
-        },
-        { once: true }
-      );
+            dispatch(getMe());
+          } catch (error) {
+            toast.error("Có lỗi xảy ra!");
+          }
+      });
     }
   };
   return (
