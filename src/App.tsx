@@ -25,6 +25,7 @@ import ProtectedRoute, {
 } from "./components/ProtectedRoute.tsx";
 import ScrollToTop from "./components/ScrollToTop.tsx";
 import { Toaster } from "react-hot-toast";
+import { PopupOauth } from "./components/PopupOauth.tsx";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -66,11 +67,17 @@ function App() {
           <Route path="buy" element={<BuyPage />}></Route>
           <Route path="products/:slug" element={<ProductDetail />}></Route>
           <Route path="404" element={<ErrorPage />} />
-          <Route path="payment-success" element={<PaymentSuccessPage/>} />
+          <Route path="payment-success" element={<PaymentSuccessPage />} />
         </Route>
         <Route path="*" element={<Navigate replace to="/404" />} />
       </Routes>
-      {!isAuthenticated && <LogIn></LogIn>}
+
+      {!isAuthenticated && (
+        <>
+          <PopupOauth></PopupOauth>
+          <LogIn></LogIn>
+        </>
+      )}
       <Toaster
         position="top-right"
         toastOptions={{
