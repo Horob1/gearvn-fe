@@ -12,14 +12,14 @@ type PromotionPolicyType = {
   _destroy: boolean;
 };
 
-type ProductDetaiType = {
+type ProductDetailType = {
   mainProduct: ProductType;
   relatedProducts: ProductType[];
   promotionPolicy: PromotionPolicyType[];
 };
 
 type InitialStateType = {
-  product: ProductDetaiType | null;
+  product: ProductDetailType | null;
   isLoading: boolean;
 };
 
@@ -43,7 +43,7 @@ const productDetailSlice = createSlice({
   initialState,
   reducers: {
     addRate: (state, action) => {
-      state.product?.mainProduct?.rateList.push(action.payload);
+      state?.product?.mainProduct?.rateList?.push(action.payload);
     },
   },
   extraReducers: (builder) => {
