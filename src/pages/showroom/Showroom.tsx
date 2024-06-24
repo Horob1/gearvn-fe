@@ -104,7 +104,7 @@ const Showroom = () => {
         </button>
         </div>
       </div>
-      <div ref={northSide} className="p-8 bg-[#E30019] flex justify-center items-center border-t">
+      <div ref={northSide} className="p-8 bg-[#E30019] flex justify-center items-center border-t-2">
         <FaLocationDot className="text-[40px] text-center text-white mr-3" ></FaLocationDot><h1 className="text-center text-white">KHU VỰC MIỀN NAM</h1>
       </div>
       <ShowroomDetail data={showrooms[0]} />
