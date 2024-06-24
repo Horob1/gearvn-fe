@@ -36,6 +36,41 @@ const LoginTab = () => {
     }
     setDisable(false);
   };
+  const handleOauth = async () => {
+    const width = 500;
+    const height = 600;
+    const left = screen.width / 2 - width / 2;
+    const top = screen.height / 2 - height / 2;
+    const authUrl = getGoogleAuthUrl(); // Hàm này trả về URL OAuth của Google
+
+    const popup = window.open(
+      authUrl,
+      "Google OAuth",
+      `width=${width}, height=${height}, top=${top}, left=${left}`
+    );
+
+    if (popup) {
+      console.log("Google OAuth popup window opened");
+      window.addEventListener(
+        "message",
+        async (event) => {
+          if (event?.data?.accessToken && event?.data?.refreshToken)
+            try {
+              // Gửi token đến server của bạn để xác thực và lấy thông tin người dùng
+              await axios.post("/api/auth/google-login", {
+                accessToken: event?.data?.accessToken,
+                refreshToken: event?.data?.refreshToken,
+              });
+
+              dispatch(getMe());
+            } catch (error) {
+              toast.error("Có lỗi xảy ra!");
+            }
+        },
+        { once: true }
+      );
+    }
+  };
   return (
     <form onSubmit={(e) => handleSubmit(e)}>
       <div>
@@ -112,12 +147,13 @@ const LoginTab = () => {
           Hoặc đăng nhập bằng
         </p>
         <div className="flex gap-4 mt-2 pb-4">
-          <a
-            href={getGoogleAuthUrl()}
+          <button
+            onClick={handleOauth}
+            type="button"
             className="w-full text-center shadow-xl bg-red-600 hover:opacity-50 text-indigo-100 py-2 rounded-md text-lg tracking-wide transition duration-1000"
           >
             Google
-          </a>
+          </button>
         </div>
         <hr />
       </div>
