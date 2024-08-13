@@ -56,6 +56,14 @@ const productDetailSlice = createSlice({
       if (
         state.product &&
         state.product.mainProduct &&
+        !state.product.mainProduct.rateList
+      ) {
+        state.product.mainProduct.rateList = [];
+      }
+
+      if (
+        state.product &&
+        state.product.mainProduct &&
         !state.product.mainProduct.imageList
       ) {
         state.product.mainProduct.imageList = [img];
